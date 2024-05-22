@@ -1,6 +1,7 @@
 import { useTheme } from "@emotion/react";
 import { Box, Button, Grid, Typography } from "@mui/material";
 import * as React from "react";
+import { Link } from "react-router-dom";
 
 export default function HomePage() {
   const { palette } = useTheme();
@@ -51,17 +52,19 @@ export default function HomePage() {
           marginTop: "10vh",
         }}
       >
+        <Link to="/cvpage">
+          <Button
+            variant="contained"
+            size="large"
+            sx={{ my: "10px", width: "60vh" }}
+            color="primary"
+          >
+            <Typography fontSize={20}>אני מפונה שמחפש עבודה</Typography>
+          </Button>
+        </Link>
         <Button
           variant="contained"
-          size="large"
-          color="primary"
-          sx={{ mb: "10px" }}
-        >
-          <Typography fontSize={20}>אני מפונה שמחפש עבודה</Typography>
-        </Button>
-        <Button
-          variant="contained"
-          sx={{ mb: "10px", mt: "2px" }}
+          sx={{ mt: "20px" }}
           size="large"
           color="secondary"
         >

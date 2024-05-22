@@ -8,8 +8,6 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import Fab from "@material-ui/core/Fab";
-import { Typography } from "@mui/material";
-// import SendIcon from "@mui/icons-material/Send";
 
 const useStyles = makeStyles({
   table: {
@@ -49,58 +47,57 @@ const Chat = () => {
   const classes = useStyles();
 
   return (
-    <div>
-      <Grid container justifyContent="center" className={classes.chatSection}>
-        <Grid
-          container
-          component={Paper}
-          justifyContent="center"
-          xs={8}
-          direction={"column"}
-        >
-          <Grid item xs={9}>
-            <List className={classes.messageArea}>
-              {messages &&
-                messages.map((message, index) => {
-                  return (
-                    <ListItem key={index}>
-                      <Grid container>
-                        <Grid item xs={12}>
-                          <ListItemText
-                            align={message.sender === "bot" ? "left" : "right"}
-                            primary={message.content}
-                          ></ListItemText>
-                        </Grid>
-                        <Grid item xs={12}>
-                          <ListItemText
-                            align={message.sender === "bot" ? "left" : "right"}
-                            secondary={message.time}
-                          ></ListItemText>
-                        </Grid>
+    <Grid container justifyContent="center" className={classes.chatSection}>
+      <Grid
+        container
+        component={Paper}
+        item
+        justifyContent="center"
+        xs={8}
+        direction={"column"}
+      >
+        <Grid item xs={9}>
+          <List className={classes.messageArea}>
+            {messages &&
+              messages.map((message, index) => {
+                return (
+                  <ListItem key={index}>
+                    <Grid container>
+                      <Grid item xs={12}>
+                        <ListItemText
+                          align={message.sender === "bot" ? "left" : "right"}
+                          primary={message.content}
+                        ></ListItemText>
                       </Grid>
-                    </ListItem>
-                  );
-                })}
-            </List>
-            <Divider />
-            <Grid container style={{ padding: "20px" }}>
-              <Grid item xs={11}>
-                <TextField
-                  id="outlined-basic-email"
-                  label="Type Something"
-                  fullWidth
-                />
-              </Grid>
-              <Grid xs={1} align="right">
-                <Fab color="primary" aria-label="add">
-                  {/* <SendIcon /> */}
-                </Fab>
-              </Grid>
+                      <Grid item xs={12}>
+                        <ListItemText
+                          align={message.sender === "bot" ? "left" : "right"}
+                          secondary={message.time}
+                        ></ListItemText>
+                      </Grid>
+                    </Grid>
+                  </ListItem>
+                );
+              })}
+          </List>
+          <Divider />
+          <Grid container style={{ padding: "20px" }}>
+            <Grid item xs={11}>
+              <TextField
+                id="outlined-basic-email"
+                label="Type Something"
+                fullWidth
+              />
+            </Grid>
+            <Grid item xs={1} align="right">
+              <Fab color="primary" aria-label="add">
+                {/* <SendIcon /> */}
+              </Fab>
             </Grid>
           </Grid>
         </Grid>
       </Grid>
-    </div>
+    </Grid>
   );
 };
 
