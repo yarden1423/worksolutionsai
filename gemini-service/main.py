@@ -29,14 +29,14 @@ def get_user_fields_from_gemini(text_data):
     return response
 
 
-def get_user_traits_from_gemini(text_data):
+def get_user_traits_from_gemini(text_data, traits):
     """
     given a cv from the user, get the traits of the individual
     """
     print("sending request to gemini api")
     response = None
     try:
-        response = gemini.get_user_traits(text_data)
+        response = gemini.get_user_traits(text_data, traits=traits)
     except Exception as e:
         print(e)
     if response is None:
@@ -51,10 +51,8 @@ def process_gemini_json(gemini_str: str):
     return None
 
 
-print("processing traits from json")
-with open("../data/skills/fields_he.json", "r", encoding='utf-8') as f:
-    traits_json = f.read()
-    traits_db = process_traits(traits_json)
+with open("../data/skills/traits_he.txt", "r", encoding='utf-8') as f:
+    traits = f.read()
 
 with open("../data/skills/fields_he.json", "r", encoding='utf-8') as f:
     fields_json = f.read()
@@ -62,7 +60,7 @@ with open("../data/skills/fields_he.json", "r", encoding='utf-8') as f:
 
 with open("../data/cv_examples/manufacturing_he.txt", "r", encoding='utf-8') as f:
     user_cv = f.read()
-    traits_response = get_user_traits_from_gemini(user_cv)
+    traits_response = get_user_traits_from_gemini(user_cv, traits=traits)
     traits = process_gemini_json(traits_response.text)
 
     fields_response = get_user_fields_from_gemini(user_cv)
