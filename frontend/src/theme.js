@@ -3,7 +3,6 @@ import { StylesProvider, jssPreset } from '@mui/styles';
 import { create } from 'jss';
 import rtl from 'jss-rtl';
 import { red } from "@mui/material/colors";
-import { createTheme } from "@mui/material/styles";
 
 
 // Create a theme instance.
