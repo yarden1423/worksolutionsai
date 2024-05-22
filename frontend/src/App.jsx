@@ -6,6 +6,7 @@ import HomePage from "./pages/HomePage";
 import Suggestion from "./pages/Suggestions";
 import SignUp from "./pages/SignUp";
 import { Typography } from "@mui/material";
+import Login from "./pages/Login";
 
 export default function App() {
   const jobs = [
@@ -75,6 +76,7 @@ export default function App() {
         <Route path="/cvpage" element={<CVpage />} />
         <Route path="/workplaces" element={<Suggestion jobs={jobs} />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </BrowserRouter>
   );

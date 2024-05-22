@@ -3,16 +3,14 @@ import CardContent from "@mui/material/CardContent";
 import { Chip, Typography, Grid } from "@mui/material";
 import CardActions from "@mui/material/CardActions";
 import Button from "@mui/material/Button";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
 import ApartmentIcon from "@mui/icons-material/Apartment";
-import CallIcon from "@mui/icons-material/Call";
 import JobDialog from "../components/JobDescriptionDialog";
 
 export default function JobSuggestion(props) {
   const job = props.job;
   return (
     <div>
-      <Card sx={{}} style={{ borderRadius: "10px", margin: "20px" }}>
+      <Card style={{ borderRadius: "10px", margin: "20px" }}>
         <CardContent>
           <Typography
             sx={{ fontSize: 20, marginBlock: 1 }}

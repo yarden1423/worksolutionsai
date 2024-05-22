@@ -21,7 +21,9 @@ const Navbar = () => {
           </Link>
         </Grid>
         <Grid item xs={6} container justifyContent={"end"}>
-          <img src={Logo} width={"100px"} />
+          <Link to="/" color="white" style={{ textDecoration: "none" }}>
+            <img src={Logo} width={"100px"} />
+          </Link>
         </Grid>
       </Toolbar>
     </AppBar>
