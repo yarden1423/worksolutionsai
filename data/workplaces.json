@@ -1,0 +1,43 @@
+[
+    {
+        "users": {
+            "$oid": "TBD"
+        },
+        "demandedSkills": [
+            {
+                "$oid": "664113acbb44e2c248032e0e"
+            },
+            {
+                "$oid": "664113acbb44e2c248032e0c"
+            },
+            {
+                "$oid": "664113acbb44e2c248032e0a"
+            }
+        ],
+        "name": "microsoft",
+        "description": "עבודה דרשנית עם דגשים על עבודת צוות ופיתוח מהבית",
+        "workPlaceType": {
+            "name": "freelance",
+            "hours": 15
+        }
+    },
+    {
+        "users": {
+            "$oid": "TBD"
+        },
+        "demandedSkills": [
+            {
+                "$oid": "664113acbb44e2c248032e0f"
+            },
+            {
+                "$oid": "664113acbb44e2c248032e0e"
+            }
+        ],
+        "name": "פלאפל חתוכה",
+        "description": "עבודת גפיים, ידע עם טיגון בשמן עמוק",
+        "workPlaceType": {
+            "name": "permenent",
+            "hours": 15
+        }
+    }
+]

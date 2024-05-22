@@ -1,0 +1,29 @@
+[
+    {
+        "_id": {
+            "$oid": "6641124cbb44e2c248032e123"
+        },
+        "name": "irmi tal",
+        "userName": "irmiHumra",
+        "password": "amiAniHai",
+        "phoneNumber": "0525155410"
+    },
+    {
+        "_id": {
+            "$oid": "6641124cbb44e2c248032124"
+        },
+        "name": "guy ginat",
+        "userName": "oneDay",
+        "password": "oneDay",
+        "phoneNumber": "0525155414"
+    },
+    {
+        "_id": {
+            "$oid": "6641124cbb44e2c248032125"
+        },
+        "name": "asaf sikler",
+        "userName": "damag",
+        "password": "tnaiKium",
+        "phoneNumber": "0525155412"
+    }
+]
