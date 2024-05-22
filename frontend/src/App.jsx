@@ -1,7 +1,7 @@
 import * as React from "react";
 import Navbar from "./components/Navbar";
-import HomePage from "./components/homePage/homePage";
 import CVpage from "./pages/CVpage";
+import HomePage from "./pages/homePage";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
