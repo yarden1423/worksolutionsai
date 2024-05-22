@@ -11,18 +11,15 @@ MONGO_URI = "mongodb+srv://owner:hirmi1423@cluster0.ubhawwh.mongodb.net/"
 client = MongoClient(MONGO_URI)
 db = client['worksolutions']  # Database name
 work_collection = db['workplaces']  # Collection name
-theme_collection = db['themes']  # Collection name
+theme_collection = db['themes']  # Collection theme
+skills_collection = db['skills']  # Collection theme
 
 
-def select_specific_fields(query={}, fields=None):
-    documents = theme_collection.find(query, fields)
+def select_specific_fields(collection, query={}, fields=None):
+    documents = collection.find(query, fields)
+    document_list = list(value for d in documents for value in d.values())
+    return document_list
 
-    # Print each document
-    for document in documents:
-        # Convert ObjectId to string for better readability
-        if '_id' in document:
-            document['_id'] = str(document['_id'])
-        print(document)
 @app.route('/')
 def hello_world():
     return 'Hello, World!'
@@ -36,13 +33,30 @@ def add_workplace():
 
 def themes():
     # query[] = request.args.to_dict()
-    query = {}
-    # Find documents in MongoDB based on the query parameters
-    data = list(theme_collection.find(query))
+    query = {}  # Replace with your query criteria if needed
 
-    print (jsonify(data))
+    # Define the fields to project (0 excludes the field, 1 includes it)
+    fields = {"name": 1, "_id": 0}  # Include 'name' field, exclude '_id' field
+
+    # Call the function to select and print specific fields
+    names = select_specific_fields(theme_collection, query, fields)
+    print (names)
+
+
+def skills():
+    # query[] = request.args.to_dict()
+    query = {}  # Replace with your query criteria if needed
+
+    # Define the fields to project (0 excludes the field, 1 includes it)
+    fields = {"name": 1, "_id": 0}  # Include 'name' field, exclude '_id' field
+
+    # Call the function to select and print specific fields
+    names = select_specific_fields(skills_collection, query, fields)
+    print (names)
+
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    app.run(debug=True)
+    #app.run(debug=True)
     themes()
+    skills()
