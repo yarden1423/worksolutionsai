@@ -1,4 +1,4 @@
-import { Grid, Typography } from "@mui/material";
+import { Button, Grid, Typography } from "@mui/material";
 
 const CVpage = () => {
   return (
@@ -21,10 +21,18 @@ const CVpage = () => {
           איך אנחנו עובדים? כל מה שעלייכם לעשות זה לטעון את קורות החיים, וכל
           השאר עלינו. נמצא עבורכם את העבודות המתאימות אליכם אישית
         </Typography>
-        <Typography variant="h6" color={"red"}>
+        <Typography variant="h8" color={"red"}>
           *הקורות חיים <strong> לא נשמרות </strong> אלא עוברות איבוד על ידי בינה
           מלאכותית
         </Typography>
+        <Button
+          variant="contained"
+          component="label"
+          sx={{ marginTop: "10px" }}
+        >
+          <Typography>טעינת קובץ עם קורות חיים</Typography>
+          <input type="file" hidden />
+        </Button>
       </Grid>
 
       <Grid item> </Grid>

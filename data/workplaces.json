@@ -1,8 +1,10 @@
 [
     {
-        "users": {
-            "$oid": "TBD"
-        },
+        "owners": [
+            {
+                "$oid": "6641124cbb44e2c248032e13"
+            }
+        ],
         "demandedSkills": [
             {
                 "$oid": "664113acbb44e2c248032e0e"
@@ -18,13 +20,16 @@
         "description": "עבודה דרשנית עם דגשים על עבודת צוות ופיתוח מהבית",
         "workPlaceType": {
             "name": "freelance",
+            "paymentPerHour": 50,
             "hours": 15
         }
     },
     {
-        "users": {
-            "$oid": "TBD"
-        },
+        "owners": [
+            {
+                "$oid": "6641124cbb44e2c248032e13"
+            }
+        ],
         "demandedSkills": [
             {
                 "$oid": "664113acbb44e2c248032e0f"
@@ -37,6 +42,7 @@
         "description": "עבודת גפיים, ידע עם טיגון בשמן עמוק",
         "workPlaceType": {
             "name": "permenent",
+            "paymentPerHour": 60,
             "hours": 15
         }
     }
