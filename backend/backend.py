@@ -53,17 +53,19 @@ def find_workplace():
         for workplace in work_places:
             matches = sum(1 for skill in workplace['demandedSkills'] if skill['name'] in final_skills)
             matches_percentage = (matches / len(final_skills)) * 100
-            if matches_percentage > 70:
+            if matches_percentage > 25:
                 final_work_places.append({workplace['name']: matches_percentage})
-        return final_skills, final_themes
+
+        return final_work_places
 
 
 def get_work_places_from_themes(themes_list):
     query = {"theme.name": {"$in": themes_list}}
-    fields = {"_id": 0, "demandedSkills.name": 1}
+    fields = {"_id": 0, "demandedSkills.name": 1, "name": 1}
     # Find documents in MongoDB based on the query
     documents = work_collection.find(query, fields)
-    return documents
+    work_places = list(documents)
+    return work_places
 
 
 # [{name: "dan", demandedSkills: [{name: "hey"}]}]
