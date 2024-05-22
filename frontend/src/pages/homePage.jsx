@@ -62,16 +62,18 @@ export default function HomePage() {
             <Typography fontSize={20}>אני מפונה שמחפש עבודה</Typography>
           </Button>
         </Link>
-        <Button
-          variant="contained"
-          sx={{ mt: "20px" }}
-          size="large"
-          color="secondary"
-        >
-          <Typography fontSize={20}>
-            אני מעסיק שרוצה להציע עבודה למפונים
-          </Typography>
-        </Button>
+        <Link to="/workplaces">
+          <Button
+            variant="contained"
+            sx={{ mt: "20px", width: "60vh" }}
+            size="large"
+            color="secondary"
+          >
+            <Typography fontSize={20}>
+              אני מעסיק שרוצה להציע עבודה למפונים
+            </Typography>
+          </Button>
+        </Link>
       </Box>
     </Grid>
   );
