@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
 from pymongo import MongoClient
-from geminiservice.gemini_functions import user_skills, user_themes
+from gemini_functions import user_skills, user_themes
 
 app = Flask(__name__)
 

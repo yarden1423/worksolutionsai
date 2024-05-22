@@ -1,4 +1,4 @@
-import geminiservice.gemini as gemini
+from gemini import get_user_fields, get_user_traits, get_cv_improvement
 import json
 
 
@@ -9,7 +9,7 @@ def get_user_fields_from_gemini(text_data, fields):
     print("sending request to gemini api [themes]")
     response = None
     try:
-        response = gemini.get_user_fields(text_data, fields)
+        response = get_user_fields(text_data, fields)
     except Exception as e:
         print(e)
     if response is None:
@@ -24,7 +24,7 @@ def get_user_traits_from_gemini(text_data, traits):
     print("sending request to gemini api [skills]")
     response = None
     try:
-        response = gemini.get_user_traits(text_data, traits=traits)
+        response = get_user_traits(text_data, traits=traits)
     except Exception as e:
         print(e)
     if response is None:
@@ -75,3 +75,34 @@ def user_themes(user_cv, fields):
     fields = clean_output(generated_fields, fields)
     return fields
 
+
+def improve_cv(name, employment_history, qualifications):
+    """
+    aim of this function is to receive basic details about a user's employment history and qualifications and return
+    a basic but quick and easy version of a cv
+    :param name: user's first and surname
+    :param employment_history: list of employment, dates, description [[], []]
+    :param qualifications: qualifications - degrees, courses, etc
+    :return: free text CV template
+    """
+    employment_history_str = []
+    for history in employment_history:
+        employment_history_str.append(
+            "עבודה ראשונה: " + history[0] + " בין תאריכים " + history[1] + ". תיאור: " + history[1] + "\n")
+    employment_history_str = "".join(employment_history_str)
+    qualifications_str = []
+    for i, qual in enumerate(qualifications):
+        qualifications_str.append(f"{i+1}. {qual}\n")
+    qualifications_str = "".join(qualifications_str)
+    input_format = f"שם: {name}\nעבודות: {employment_history_str}\n השכלה: {qualifications_str}"
+    cv_response = get_cv_improvement(input_format)
+    return cv_response
+
+
+if __name__ == "__main__":
+    name = "נמרוד ויין"
+    empl = [["מהנדס מערכת", "2021-2022", "עבד בתור מהנדס מערכת לשעה וחתי ביום"],
+            ["מפתח פול-סטאק", "2022-2023", "עישתי עבודה אחושיללינג תאמין לי אחי"],
+            ["חוקר מדעי הנתונים", "2023-2024", "אחי אני יודע דאטא כמו אלוהים"]]
+    quals = ["תואר ראשון מדעי המחשב", "תואר שני מדעי המחשב", "קורס דב-אופס"]
+    print(improve_cv(name, empl, quals))
