@@ -108,6 +108,7 @@ export default function Suggestion() {
                         jobTitle: "",
                         description: "",
                         skills: [],
+                        theme: { _id: "", name: "" },
                         companyName: "",
                         location: "",
                         contactInfo: "",
