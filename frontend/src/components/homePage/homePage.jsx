@@ -5,10 +5,6 @@ import * as React from "react";
 export default function HomePage() {
   const { palette } = useTheme();
 
-  console.log(
-    palette,
-    `-webkit-linear-gradient(top right, ${palette.primary.main}, ${palette.secondary.main})`
-  );
   return (
     <Grid
       container
