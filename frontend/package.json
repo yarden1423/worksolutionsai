@@ -16,6 +16,9 @@
     "@mui/material": "next",
     "@mui/styles": "^5.15.18",
     "jss-rtl": "^0.3.0",
+    "mammoth": "^1.7.2",
+    "pdf-parse": "^1.1.1",
+    "pdfjs-dist": "^4.2.67",
     "react": "latest",
     "react-dom": "latest",
     "react-router-dom": "^6.23.1"

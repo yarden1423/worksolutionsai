@@ -8,14 +8,12 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 
 export default function App() {
   return (
-    <Container maxWidth={false}>
-      <BrowserRouter>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/cvpage" element={<CVpage />} />
-        </Routes>
-      </BrowserRouter>
-    </Container>
+    <BrowserRouter>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/cvpage" element={<CVpage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
