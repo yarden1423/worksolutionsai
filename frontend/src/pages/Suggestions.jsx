@@ -12,7 +12,7 @@ export default function Suggestion() {
       name: "Redhat",
       description:
         "אני מחפש אנשים שרוצים לתת את כל מה שיש להם, אוהבים לעבוד ועובדים על אהבה, מחפשים את האחד ומוכנים לחכות",
-      location: "רעננה",
+      location: [51.505, -0.09],
       skills: [
         { _id: 1, name: "Java" },
         { _id: 2, name: "Python" },
@@ -23,13 +23,14 @@ export default function Suggestion() {
         name: "תכנות",
       },
       url: "https://www.youtube.com/watch?v=HxD5La2BlwQ",
+      isEmployed: true,
     },
     {
       _id: 2,
       name: "Redhat",
       description:
         "אני מחפש אנשים שרוצים לתת את כל מה שיש להם, אוהבים לעבוד ועובדים על אהבה, מחפשים את האחד ומוכנים לחכות",
-      location: "רעננה",
+      location: [51.505, -0.09],
       skills: [
         { _id: 3, name: "Java" },
         { _id: 4, name: "Python" },
@@ -40,13 +41,14 @@ export default function Suggestion() {
         name: "תכנות",
       },
       url: "https://www.youtube.com/watch?v=HxD5La2BlwQ",
+      isEmployed: true,
     },
     {
       _id: 3,
       name: "Redhat",
       description:
         "אני מחפש אנשים שרוצים לתת את כל מה שיש להם, אוהבים לעבוד ועובדים על אהבה, מחפשים את האחד ומוכנים לחכות",
-      location: "רעננה",
+      location: [51.505, -0.09],
       skills: [
         { _id: 6, name: "Java" },
         { _id: 7, name: "Python" },
@@ -57,6 +59,7 @@ export default function Suggestion() {
         name: "תכנות",
       },
       url: "https://www.youtube.com/watch?v=HxD5La2BlwQ",
+      isEmployed: false,
     },
   ]);
   return (

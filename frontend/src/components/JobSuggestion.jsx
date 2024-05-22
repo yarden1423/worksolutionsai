@@ -5,10 +5,18 @@ import CardActions from "@mui/material/CardActions";
 import Button from "@mui/material/Button";
 import ApartmentIcon from "@mui/icons-material/Apartment";
 import JobDialog from "../components/JobDescriptionDialog";
+import "./styles.css";
 
 export default function JobSuggestion({ job }) {
   return (
-    <Card style={{ borderRadius: "10px", margin: "20px" }}>
+    <Card
+      style={{ borderRadius: "10px", margin: "20px" }}
+      className={"component"}
+    >
+      <div className={job.isEmployed ? "tengreen-top" : "tenred-top"}></div>
+      <div
+        className={job.isEmployed ? "tengreen-bottom" : "tenred-bottom"}
+      ></div>
       <CardContent>
         <Typography
           sx={{ fontSize: 20, marginBlock: 1 }}
@@ -63,12 +71,8 @@ export default function JobSuggestion({ job }) {
         >
           {job.skills.map((skill) => {
             return (
-              <Grid item xs={3} style={{ marginTop: "5px" }}>
-                <Chip
-                  label={skill.name}
-                  key={skill._id}
-                  sx={{ marginRight: 1 }}
-                />
+              <Grid item style={{ marginTop: "5px", marginRight: "10px" }}>
+                <Chip label={skill.name} key={skill._id} />
               </Grid>
             );
           })}

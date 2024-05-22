@@ -30,7 +30,7 @@ export default function JobDialog({ job }) {
       >
         <DialogTitle id="alert-dialog-title">
           <Typography textAlign={"center"} fontSize={30}>
-            {job.jobTitle}
+            {job.name}
           </Typography>
         </DialogTitle>
         <DialogContent>
