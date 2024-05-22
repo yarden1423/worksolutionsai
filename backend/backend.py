@@ -39,9 +39,7 @@ def themes():
     fields = {"name": 1, "_id": 0}  # Include 'name' field, exclude '_id' field
 
     # Call the function to select and print specific fields
-    names = select_specific_fields(theme_collection, query, fields)
-    print (names)
-
+    themes_list = select_specific_fields(theme_collection, query, fields)
 
 def skills():
     # query[] = request.args.to_dict()
@@ -51,8 +49,7 @@ def skills():
     fields = {"name": 1, "_id": 0}  # Include 'name' field, exclude '_id' field
 
     # Call the function to select and print specific fields
-    names = select_specific_fields(skills_collection, query, fields)
-    print (names)
+    names_list = select_specific_fields(skills_collection, query, fields)
 
 
 # Press the green button in the gutter to run the script.
