@@ -3,6 +3,7 @@ from pymongo import MongoClient
 from geminiservice.gemini_functions import user_skills, user_themes
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin, LoginManager, login_user, logout_user, login_required, current_user
+import re
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'TodaBoreOlamAlHanitzachon14573@!$!@'  # You should use a secure, unique secret key!
@@ -41,6 +42,20 @@ class User(UserMixin):
 @login_manager.user_loader
 def load_user(username):
     return User.get_by_taz(username)
+
+def validate_password(password):
+    if len(password) < 8:
+        return "Password must be at least 8 characters long."
+    if not re.search("[a-z]", password):
+        return "Password must contain at least one lowercase letter."
+    if not re.search("[A-Z]", password):
+        return "Password must contain at least one uppercase letter."
+    if not re.search("[0-9]", password):
+        return "Password must contain at least one digit."
+    if not re.search("[!@#$%^&*(),.?\":{}|<>]", password):
+        return "Password must contain at least one special character."
+
+    return "Password is strong."
 @app.route('/register', methods=['POST'])
 def register():
     taz = request.json.get('taz')
@@ -56,6 +71,10 @@ def register():
     # Check if user already exists
     if users_collection.find_one({"taz": taz}):
         return jsonify({"error": "User with this ID number already exists"}), 409
+
+    password_validation = validate_password(password)
+    if password_validation != "Password is strong.":
+        return jsonify({"error": password_validation}), 400
 
     # Hash the password
     hashed_password = generate_password_hash(password)
