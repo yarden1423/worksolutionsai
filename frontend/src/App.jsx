@@ -1,11 +1,6 @@
 import * as React from 'react';
 import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
-import ProTip from './ProTip';
-import Copyright from './Copyright';
-import JobSuggestion from './components/jobSuggestion';
-import Suggestion from './Suggestions';
+import HomePage from './components/homePage/homePage';
 
 export default function App() {
 
@@ -24,10 +19,6 @@ export default function App() {
 
 
   return (
-    <div>
-      <Suggestion jobs = {[job1, job2,job3, job4, job5, job6]}>
-
-      </Suggestion>
-    </div>
+     <HomePage />
   );
 }
