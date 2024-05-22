@@ -1,5 +1,5 @@
-from fields_model import fields_model
-from traits_model import traits_model
+from geminiservice.fields_model import fields_model
+from geminiservice.traits_model import traits_model
 
 
 def get_user_traits(user_details: str, traits):

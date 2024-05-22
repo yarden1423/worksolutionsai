@@ -1,4 +1,4 @@
-import gemini
+import geminiservice.gemini as gemini
 import json
 
 
@@ -6,7 +6,7 @@ def get_user_fields_from_gemini(text_data, fields):
     """
     given a cv from the user, get the relevant fields (tech, teaching, construction, etc.)
     """
-    print("sending request to gemini api")
+    print("sending request to gemini api [themes]")
     response = None
     try:
         response = gemini.get_user_fields(text_data, fields)
@@ -21,7 +21,7 @@ def get_user_traits_from_gemini(text_data, traits):
     """
     given a cv from the user, get the traits of the individual
     """
-    print("sending request to gemini api")
+    print("sending request to gemini api [skills]")
     response = None
     try:
         response = gemini.get_user_traits(text_data, traits=traits)
@@ -48,7 +48,7 @@ def clean_output(generated_list, source_list):
     return output_list
 
 
-def user_traits(user_cv, traits):
+def user_skills(user_cv, skills):
     """
     function uses the user cv and traits given to it to make a request to the gemini api
     it receives what gemini perceives as the key skills in the worker's cv
@@ -56,13 +56,13 @@ def user_traits(user_cv, traits):
     :param traits: list of strings (traits)
     :return: a list of traits that were cleaned to only include what were in the original list supplied
     """
-    traits_response = get_user_traits_from_gemini(user_cv, traits=traits)
+    traits_response = get_user_traits_from_gemini(user_cv, traits=skills)
     generated_traits = process_gemini_json(traits_response.text)['תכונות']
-    traits = clean_output(generated_traits, source_traits)
+    traits = clean_output(generated_traits, skills)
     return traits
 
 
-def user_fields(user_cv, fields):
+def user_themes(user_cv, fields):
     """
     function sends the worker's cv and fields (professions). the function makes an api request to find the most relevant
     jobs based on the worker's cv. the fields returned are then processed so only those in the original list provided are returned
@@ -75,17 +75,3 @@ def user_fields(user_cv, fields):
     fields = clean_output(generated_fields, fields)
     return fields
 
-
-with open("../data/skills/traits_he.txt", "r", encoding='utf-8') as f:
-    source_traits = f.read()
-
-with open("../data/skills/fields_he.txt", "r", encoding='utf-8') as f:
-    source_fields = f.read()
-
-with open("../data/cv_examples/programming_marketing_he.txt", "r", encoding='utf-8') as f:
-    user_cv = f.read()
-    traits = user_traits(user_cv, source_traits)
-    fields = user_fields(user_cv, source_fields)
-
-    print(traits)
-    print(fields)
