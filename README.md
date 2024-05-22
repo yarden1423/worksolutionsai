@@ -22,4 +22,4 @@ amit finkel - gemeni master prod👾👾<br />
 MEDIA TEAM (win condition)<br />
 roni rozen - pr master✍️✍️<br />
 
-![image info](erd.png)
+![image info](Screenshot 2024-05-22 141514.png)
