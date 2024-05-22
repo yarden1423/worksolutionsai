@@ -68,10 +68,6 @@ def get_work_places_from_themes(themes_list):
     return work_places
 
 
-# [{name: "dan", demandedSkills: [{name: "hey"}]}]
-# Convert the cursor to a list of document values
-
-
 def get_all_themes():
     # query[] = request.args.to_dict()
     query = {}  # Replace with your query criteria if needed
