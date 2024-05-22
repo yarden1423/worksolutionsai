@@ -10,9 +10,15 @@
   "dependencies": {
     "@emotion/react": "latest",
     "@emotion/styled": "latest",
+    "@files-ui/react": "^1.2.4",
+    "@material-ui/core": "^4.12.4",
     "@mui/material": "next",
+    "@mui/styles": "^5.15.18",
+    "jss-rtl": "^0.3.0",
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "react-material-file-upload": "^0.0.4",
+    "react-router-dom": "^6.23.1"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "latest",

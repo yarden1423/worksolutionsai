@@ -7,7 +7,7 @@ import rtl from 'jss-rtl';
 const theme = createTheme({
   direction: 'rtl', // Set the direction to RTL
   typography: {
-    fontFamily: 'Your RTL font, Arial, sans-serif', // Customize with your preferred font
+   fontFamily: 'system-ui'
   },
 });
 
