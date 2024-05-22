@@ -1,9 +1,11 @@
-FROM python:3.9
+FROM python:3.9-slim
+WORKDIR /app
 
 COPY backend.py .
 COPY requirements.txt .
-COPY geminiservice .
+COPY geminiservice/ ./geminiservice/
 RUN pip install -r requirements.txt
 
-CMD ['python', 'backend.py']
+CMD ["python", "./backend.py"]
+
 
