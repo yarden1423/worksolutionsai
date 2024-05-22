@@ -5,8 +5,16 @@ import CardActions from "@mui/material/CardActions";
 import Button from "@mui/material/Button";
 import ApartmentIcon from "@mui/icons-material/Apartment";
 import JobDialog from "../components/JobDescriptionDialog";
+import { useState } from "react";
 
-export default function JobSuggestion({ job }) {
+export default function JobSuggestionEdit() {
+  const [skills, setSkills] = useState();
+  const [theme, setTheme] = useState();
+  const [description, setDescription] = useState();
+  const [address, setAddress] = useState();
+  const [url, setUrl] = useState();
+  const [name, setName] = useState();
+
   return (
     <Card style={{ borderRadius: "10px", margin: "20px" }}>
       <CardContent>
@@ -21,31 +29,18 @@ export default function JobSuggestion({ job }) {
           }}
         >
           <Grid container justifyContent={"space-between"}>
-            <Grid item>{job.name}</Grid>
+            <Grid item>{job.companyName}</Grid>
             <Grid item>
               <ApartmentIcon />
             </Grid>
           </Grid>
         </Typography>
-
-        <Typography
-          variant="body2"
-          sx={{ fontSize: 12 }}
-          marginTop={"20px"}
-          style={{ fontWeight: "bold" }}
-        >
-          נושא:
-        </Typography>
-        <Grid
-          container
-          justifyContent={"start"}
-          style={{ marginRight: "25px", marginTop: "5px" }}
-        >
-          <Chip
-            label={job.theme.name}
-            key={job.theme.id}
-            sx={{ marginRight: 1 }}
-          />
+        <Grid container justifyContent={"center"}>
+          <Grid xs={7} item>
+            <Typography variant="h6" color="primary" textAlign={"center"}>
+              {job.jobTitle}
+            </Typography>
+          </Grid>
         </Grid>
 
         <Typography
@@ -56,17 +51,13 @@ export default function JobSuggestion({ job }) {
         >
           כישורים נדרשים:
         </Typography>
-        <Grid
-          container
-          justifyContent={"start"}
-          style={{ marginRight: "25px" }}
-        >
+        <Grid container justifyContent={"end"}>
           {job.skills.map((skill) => {
             return (
-              <Grid item xs={3} style={{ marginTop: "5px" }}>
+              <Grid item sx={3}>
                 <Chip
                   label={skill.name}
-                  key={skill._id}
+                  key={skill.name}
                   sx={{ marginRight: 1 }}
                 />
               </Grid>
@@ -85,7 +76,7 @@ export default function JobSuggestion({ job }) {
             <Button
               sx={{ fontsize: 14 }}
               style={{ display: "flex", alignItems: "right" }}
-              href={job.url}
+              href={job.link}
               target="_blank"
             >
               גישה לאתר

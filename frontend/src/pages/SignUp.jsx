@@ -23,6 +23,7 @@ export default function Login() {
   const [taz, setTaz] = useState();
   const [phoneNumber, setPhoneNumber] = useState();
   const [password, setPassword] = useState();
+  const [confirmedPassword, setConfirmedPassword] = useState();
   const [email, setEmail] = useState();
 
   return (
@@ -73,6 +74,7 @@ export default function Login() {
               <TextField
                 label="תעודת זהות"
                 variant="outlined"
+                type="number"
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
@@ -90,6 +92,7 @@ export default function Login() {
               <TextField
                 label="מספר טלפון"
                 variant="outlined"
+                type="number"
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
@@ -105,7 +108,26 @@ export default function Login() {
             </Grid>
             <Grid item xs={5} mt="25px" container justifyContent={"center"}>
               <TextField
+                label="אימייל"
+                variant="outlined"
+                type="email"
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <AlternateEmailIcon />
+                    </InputAdornment>
+                  ),
+                }}
+                value={email}
+                onChange={(e) => {
+                  setEmail(() => e.target.value);
+                }}
+              />
+            </Grid>
+            <Grid item xs={5} mt="25px" container justifyContent={"center"}>
+              <TextField
                 label="סיסמא"
+                type="password"
                 variant="outlined"
                 InputProps={{
                   startAdornment: (
@@ -122,18 +144,19 @@ export default function Login() {
             </Grid>
             <Grid item xs={5} mt="25px" container justifyContent={"center"}>
               <TextField
-                label="אימייל"
+                label="ודא סיסמא"
+                type="password"
                 variant="outlined"
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
-                      <AlternateEmailIcon />
+                      <PasswordIcon />
                     </InputAdornment>
                   ),
                 }}
-                value={email}
+                value={confirmedPassword}
                 onChange={(e) => {
-                  setEmail(() => e.target.value);
+                  setConfirmedPassword(() => e.target.value);
                 }}
               />
             </Grid>
@@ -148,7 +171,7 @@ export default function Login() {
               color="secondary"
             >
               <Grid container justifyContent={"center"}>
-                <Typography fontSize={16}>הירשם</Typography>
+                <Typography fontSize={20}>הירשם</Typography>
               </Grid>
             </Button>
           </Grid>
