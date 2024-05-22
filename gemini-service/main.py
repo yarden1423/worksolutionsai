@@ -39,25 +39,6 @@ def process_gemini_json(gemini_str: str):
     return None
 
 
-with open("../data/skills/traits_he.txt", "r", encoding='utf-8') as f:
-    source_traits = f.read()
-
-with open("../data/skills/fields_he.txt", "r", encoding='utf-8') as f:
-    source_fields = f.read()
-
-
-def user_traits(user_cv, traits):
-    traits_response = get_user_traits_from_gemini(user_cv, traits=traits)
-    traits = process_gemini_json(traits_response.text)
-    return traits['תכונות']
-
-
-def user_fields(user_cv, fields):
-    fields_response = get_user_fields_from_gemini(user_cv, fields=fields)
-    fields = process_gemini_json(fields_response.text)
-    return fields['תכונות']
-
-
 def clean_output(generated_list, source_list):
     output_list = []
     if generated_list is not None:
@@ -67,10 +48,30 @@ def clean_output(generated_list, source_list):
     return output_list
 
 
+def user_traits(user_cv, traits):
+    traits_response = get_user_traits_from_gemini(user_cv, traits=traits)
+    generated_traits = process_gemini_json(traits_response.text)['תכונות']
+    traits = clean_output(generated_traits, source_traits)
+    return traits
+
+
+def user_fields(user_cv, fields):
+    fields_response = get_user_fields_from_gemini(user_cv, fields=fields)
+    generated_fields = process_gemini_json(fields_response.text)['תכונות']
+    fields = clean_output(generated_fields, fields)
+    return fields
+
+
+with open("../data/skills/traits_he.txt", "r", encoding='utf-8') as f:
+    source_traits = f.read()
+
+with open("../data/skills/fields_he.txt", "r", encoding='utf-8') as f:
+    source_fields = f.read()
+
 with open("../data/cv_examples/manufacturing_he.txt", "r", encoding='utf-8') as f:
     user_cv = f.read()
-    traits = clean_output(user_traits(user_cv, traits=source_traits), source_traits)
-    fields = clean_output(user_fields(user_cv, source_fields), source_fields)
+    traits = user_traits(user_cv, source_traits)
+    fields = user_fields(user_cv, source_fields)
 
     print(traits)
     print(fields)
