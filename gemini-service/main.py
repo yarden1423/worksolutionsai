@@ -49,6 +49,13 @@ def clean_output(generated_list, source_list):
 
 
 def user_traits(user_cv, traits):
+    """
+    function uses the user cv and traits given to it to make a request to the gemini api
+    it receives what gemini perceives as the key skills in the worker's cv
+    :param user_cv: string of worker's full cv
+    :param traits: list of strings (traits)
+    :return: a list of traits that were cleaned to only include what were in the original list supplied
+    """
     traits_response = get_user_traits_from_gemini(user_cv, traits=traits)
     generated_traits = process_gemini_json(traits_response.text)['תכונות']
     traits = clean_output(generated_traits, source_traits)
@@ -56,8 +63,15 @@ def user_traits(user_cv, traits):
 
 
 def user_fields(user_cv, fields):
+    """
+    function sends the worker's cv and fields (professions). the function makes an api request to find the most relevant
+    jobs based on the worker's cv. the fields returned are then processed so only those in the original list provided are returned
+    :param user_cv: string of worker's full cv
+    :param fields: list of strings (fields/professions)
+    :return: a list of fields that were cleaned to only include what were in the original list supplied
+    """
     fields_response = get_user_fields_from_gemini(user_cv, fields=fields)
-    generated_fields = process_gemini_json(fields_response.text)['תכונות']
+    generated_fields = process_gemini_json(fields_response.text)
     fields = clean_output(generated_fields, fields)
     return fields
 
@@ -68,7 +82,7 @@ with open("../data/skills/traits_he.txt", "r", encoding='utf-8') as f:
 with open("../data/skills/fields_he.txt", "r", encoding='utf-8') as f:
     source_fields = f.read()
 
-with open("../data/cv_examples/manufacturing_he.txt", "r", encoding='utf-8') as f:
+with open("../data/cv_examples/programming_marketing_he.txt", "r", encoding='utf-8') as f:
     user_cv = f.read()
     traits = user_traits(user_cv, source_traits)
     fields = user_fields(user_cv, source_fields)
