@@ -1,6 +1,6 @@
 import gemini
 
-with open("data/cv_examples/agriculture_he.txt", "r", encoding='utf-8') as f:
+with open("../data/cv_examples/agriculture_he.txt", "r", encoding='utf-8') as f:
     user_cv = f.read()
     print("sending request to gemini api")
     response = None
