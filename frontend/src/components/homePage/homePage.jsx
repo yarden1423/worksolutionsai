@@ -61,7 +61,7 @@ export default function HomePage() {
           color="primary"
           sx={{ mb: "10px" }}
         >
-          <Typography fontSize={24}>אני מפונה שמחפש עבודה</Typography>
+          <Typography fontSize={20}>אני מפונה שמחפש עבודה</Typography>
         </Button>
         <Button
           variant="contained"
@@ -69,7 +69,7 @@ export default function HomePage() {
           size="large"
           color="secondary"
         >
-          <Typography fontSize={24}>
+          <Typography fontSize={20}>
             אני מעסיק שרוצה להציע עבודה למפונים
           </Typography>
         </Button>
