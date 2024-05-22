@@ -1,0 +1,30 @@
+{
+  "name": "material-ui-vite",
+  "version": "5.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview --host"
+  },
+  "dependencies": {
+    "@emotion/react": "latest",
+    "@emotion/styled": "latest",
+    "@files-ui/react": "^1.2.4",
+    "@mui/icons-material": "^5.15.18",
+    "@mui/material": "next",
+    "@mui/styles": "^5.15.18",
+    "jss-rtl": "^0.3.0",
+    "mammoth": "^1.7.2",
+    "pdf-parse": "^1.1.1",
+    "pdfjs-dist": "^4.2.67",
+    "react": "latest",
+    "react-code-input": "^3.10.1",
+    "react-dom": "latest",
+    "react-router-dom": "^6.23.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "latest",
+    "vite": "latest"
+  }
+}

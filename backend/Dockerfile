@@ -1,8 +1,8 @@
 FROM python:3.9
 
-COPY backend .
-COPY ../geminiservice .
+COPY backend.py .
 COPY requirements.txt .
+COPY geminiservice .
 
 RUN pip install -r requirements.txt
 

@@ -1,43 +1,70 @@
 [
     {
-        "users": {
-            "$oid": "TBD"
-        },
+        "owners": [
+            {
+                "$oid": "6641124cbb44e2c248032e13"
+            }
+        ],
         "demandedSkills": [
             {
-                "$oid": "664113acbb44e2c248032e0e"
+                "_id": {
+                    "$oid": "664113acbb44e2c248032e0a"
+                },
+                "name": "חשמלאי"
             },
             {
-                "$oid": "664113acbb44e2c248032e0c"
-            },
-            {
-                "$oid": "664113acbb44e2c248032e0a"
+                "_id": {
+                    "$oid": "664113acbb44e2c248032e0f"
+                },
+                "name": "מורה פרטי"
             }
         ],
         "name": "microsoft",
         "description": "עבודה דרשנית עם דגשים על עבודת צוות ופיתוח מהבית",
         "workPlaceType": {
             "name": "freelance",
+            "paymentPerHour": 50,
             "hours": 15
+        },
+        "theme": {
+            "_id": {
+                "$oid": "664113acbb44e2c248032224"
+            },
+            "name": "חשמל"
         }
     },
     {
-        "users": {
-            "$oid": "TBD"
-        },
+        "owners": [
+            {
+                "$oid": "6641124cbb44e2c248032e13"
+            }
+        ],
         "demandedSkills": [
             {
-                "$oid": "664113acbb44e2c248032e0f"
+                "_id": {
+                    "$oid": "664113acbb44e2c248032e0b"
+                },
+                "name": "פיתוח בקאנד"
             },
             {
-                "$oid": "664113acbb44e2c248032e0e"
+                "_id": {
+                    "$oid": "664113acbb44e2c248032e0c"
+                },
+                "name": "אינסטלטור"
             }
         ],
         "name": "פלאפל חתוכה",
         "description": "עבודת גפיים, ידע עם טיגון בשמן עמוק",
         "workPlaceType": {
             "name": "permenent",
+            "paymentPerHour": 60,
             "hours": 15
+        },
+        "theme": {
+            "_id": {
+                "$oid": "664113acbb44e2c248032224"
+            },
+            "name": "חשמל"
         }
     }
 ]
