@@ -5,12 +5,16 @@ import { Dropzone, FileMosaic } from "@files-ui/react";
 const CVpage = () => {
   const [files, setFiles] = useState([]);
 
-  const removeFile = (e) => {
-    console.log(e);
+  const removeFile = (deletedFile) => {
+    setFiles((oldFiles) => {
+      return oldFiles.filter((file) => file.id !== deletedFile);
+    });
   };
 
-  const updateFiles = (e) => {
-    console.log(e);
+  const updateFiles = (newFiles) => {
+    setFiles(() => {
+      return newFiles;
+    });
   };
 
   return (
@@ -42,7 +46,13 @@ const CVpage = () => {
       </Grid>
 
       <Grid item xs={6} sx={{ paddingX: "10px" }}>
-        <Dropzone onChange={updateFiles} value={files}>
+        <Dropzone
+          actionButtons={{ position: "bottom", cleanButton: {} }}
+          onChange={updateFiles}
+          value={files}
+          label="הכניסו קורות חיים"
+          behaviour={"replace"}
+        >
           {files.map((file) => (
             <FileMosaic key={file.id} {...file} onDelete={removeFile} info />
           ))}

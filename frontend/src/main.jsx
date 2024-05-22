@@ -1,18 +1,14 @@
 import * as React from "react";
-import { createRoot } from "react-dom/client";
+import ReactDOM from "react-dom";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
 import App from "./App";
 import theme, { jss, StylesProvider } from "./theme";
 import "./index.css";
 
-const rootElement = document.getElementById("root");
-
 document.body.setAttribute("dir", "rtl");
 
-const root = createRoot(rootElement);
-
-root.render(
+ReactDOM.render(
   <React.StrictMode>
     <StylesProvider jss={jss}>
       <ThemeProvider theme={theme}>
@@ -21,5 +17,6 @@ root.render(
         <App />
       </ThemeProvider>
     </StylesProvider>
-  </React.StrictMode>
+  </React.StrictMode>,
+  document.getElementById("root")
 );
