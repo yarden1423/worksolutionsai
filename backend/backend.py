@@ -1,8 +1,11 @@
 from flask import Flask, request, jsonify
 from pymongo import MongoClient
 from geminiservice.gemini_functions import user_skills, user_themes
+from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import UserMixin, LoginManager, login_user, logout_user, login_required, current_user
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'TodaBoreOlamAlHanitzachon14573@!$!@'  # You should use a secure, unique secret key!
 
 # Environment variables for security
 MONGO_URI = "mongodb+srv://owner:hirmi1423@cluster0.ubhawwh.mongodb.net/"
@@ -13,6 +16,69 @@ db = client['worksolutions']  # Database name
 work_collection = db['workplaces']  # Collection name
 theme_collection = db['themes']  # Collection theme
 skills_collection = db['skills']  # Collection theme
+users_collection = db['users']
+
+
+class User(UserMixin):
+    def __init__(self, id_number, name, phone_number, email):
+        self.id_number = id_number
+        self.name = name
+        self.phone_number = phone_number
+        self.email = email
+
+    @staticmethod
+    def get_by_id_number(id_number):
+        user_data = users_collection.find_one({"id_number": id_number})
+        if user_data:
+            return User(id_number=user_data['id_number'], name=user_data['name'], phone_number=user_data['phone_number'], email=user_data['email'])
+        return None
+
+    def get_id(self):
+        return self.id_number
+
+
+@app.route('/register', methods=['POST'])
+def register():
+    id_number = request.json.get('id_number')
+    name = request.json.get('name')
+    password = request.json.get('password')
+    phone_number = request.json.get('phone_number')
+    email = request.json.get('email')
+
+    # Validate required fields
+    if not all([id_number, name, password, phone_number, email]):
+        return jsonify({"error": "All fields are required"}), 400
+
+    # Check if user already exists
+    if users_collection.find_one({"id_number": id_number}):
+        return jsonify({"error": "User with this ID number already exists"}), 409
+
+    # Hash the password
+    hashed_password = generate_password_hash(password)
+
+    # Insert new user
+    users_collection.insert_one({
+        "id_number": id_number,
+        "name": name,
+        "password": hashed_password,
+        "phone_number": phone_number,
+        "email": email
+    })
+    return jsonify({"message": "User registered successfully"}), 201
+
+
+@app.route('/login', methods=['POST'])
+def login():
+    id_number = request.json.get('id_number')
+    password = request.json.get('password')
+    user_document = users_collection.find_one({"id_number": id_number})
+
+    if user_document and check_password_hash(user_document['password'], password):
+        user = User(id_number=id_number, name=user_document['name'], phone_number=user_document['phone_number'], email=user_document['email'])
+        login_user(user)
+        return jsonify({"message": "Logged in successfully"}), 200
+
+    return jsonify({"error": "Invalid ID number or password"}), 401
 
 
 def select_specific_fields(collection, query={}, fields=None):
@@ -27,6 +93,7 @@ def hello_world():
 
 
 @app.route('/add_workplace', methods=['POST'])
+@login_required
 def add_workplace():
     if request.method == 'POST':
         workplace_data = request.json
