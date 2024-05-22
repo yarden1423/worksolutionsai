@@ -4,7 +4,8 @@ import Navbar from "./components/Navbar";
 import CVpage from "./pages/CVpage";
 import HomePage from "./pages/HomePage";
 import Suggestion from "./pages/Suggestions";
-import { Typography } from "@material-ui/core";
+import SignUp from "./pages/SignUp";
+import { Typography } from "@mui/material";
 
 export default function App() {
   const jobs = [
@@ -73,6 +74,7 @@ export default function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/cvpage" element={<CVpage />} />
         <Route path="/workplaces" element={<Suggestion jobs={jobs} />} />
+        <Route path="/signup" element={<SignUp />} />
       </Routes>
     </BrowserRouter>
   );

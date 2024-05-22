@@ -76,7 +76,7 @@ export default function HomePage() {
               </Grid>
             </Button>
           </Link>
-          <Link to="/workplaces">
+          <Link to="/signup">
             <Button
               variant="contained"
               sx={{ mt: "20px", width: "55vh" }}
