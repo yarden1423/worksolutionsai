@@ -1,8 +1,9 @@
 import * as React from "react";
 import Container from "@mui/material/Container";
-import Chat from "./components/Chat";
 import Navbar from "./components/Navbar";
 import CVpage from "./pages/CVpage";
+import HomePage from "./components/homePage/homePage";
+
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 
 export default function App() {
@@ -11,7 +12,7 @@ export default function App() {
       <BrowserRouter>
         <Navbar />
         <Routes>
-          <Route path="/" element={<Chat />} />
+          <Route path="/" element={<HomePage />} />
           <Route path="/cvpage" element={<CVpage />} />
         </Routes>
       </BrowserRouter>
