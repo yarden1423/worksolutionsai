@@ -7,6 +7,9 @@ from flask_login import UserMixin, LoginManager, login_user, logout_user, login_
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'TodaBoreOlamAlHanitzachon14573@!$!@'  # You should use a secure, unique secret key!
 
+login_manager = LoginManager()
+login_manager.init_app(app)
+
 # Environment variables for security
 MONGO_URI = "mongodb+srv://owner:hirmi1423@cluster0.ubhawwh.mongodb.net/"
 
@@ -18,39 +21,40 @@ theme_collection = db['themes']  # Collection theme
 skills_collection = db['skills']  # Collection theme
 users_collection = db['users']
 
-
 class User(UserMixin):
-    def __init__(self, id_number, name, phone_number, email):
-        self.id_number = id_number
+    def __init__(self, taz, name, phoneNumber, gmail):
+        self.taz = taz
         self.name = name
-        self.phone_number = phone_number
-        self.email = email
+        self.phoneNumber = phoneNumber
+        self.gmail = gmail
 
     @staticmethod
-    def get_by_id_number(id_number):
-        user_data = users_collection.find_one({"id_number": id_number})
+    def get_by_taz(taz):
+        user_data = users_collection.find_one({"taz": taz})
         if user_data:
-            return User(id_number=user_data['id_number'], name=user_data['name'], phone_number=user_data['phone_number'], email=user_data['email'])
+            return User(taz=user_data['taz'], name=user_data['name'], phoneNumber=user_data['phoneNumber'], gmail=user_data['gmail'])
         return None
 
     def get_id(self):
-        return self.id_number
+        return self.taz
 
-
+@login_manager.user_loader
+def load_user(username):
+    return User.get_by_taz(username)
 @app.route('/register', methods=['POST'])
 def register():
-    id_number = request.json.get('id_number')
+    taz = request.json.get('taz')
     name = request.json.get('name')
     password = request.json.get('password')
-    phone_number = request.json.get('phone_number')
-    email = request.json.get('email')
+    phoneNumber = request.json.get('phoneNumber')
+    gmail = request.json.get('gmail')
 
     # Validate required fields
-    if not all([id_number, name, password, phone_number, email]):
+    if not all([taz, name, password, phoneNumber, gmail]):
         return jsonify({"error": "All fields are required"}), 400
 
     # Check if user already exists
-    if users_collection.find_one({"id_number": id_number}):
+    if users_collection.find_one({"taz": taz}):
         return jsonify({"error": "User with this ID number already exists"}), 409
 
     # Hash the password
@@ -58,27 +62,33 @@ def register():
 
     # Insert new user
     users_collection.insert_one({
-        "id_number": id_number,
+        "taz": taz,
         "name": name,
         "password": hashed_password,
-        "phone_number": phone_number,
-        "email": email
+        "phoneNumber": phoneNumber,
+        "gmail": gmail
     })
     return jsonify({"message": "User registered successfully"}), 201
 
 
 @app.route('/login', methods=['POST'])
 def login():
-    id_number = request.json.get('id_number')
+    taz = request.json.get('taz')
     password = request.json.get('password')
-    user_document = users_collection.find_one({"id_number": id_number})
+    user_document = users_collection.find_one({"taz": taz})
 
     if user_document and check_password_hash(user_document['password'], password):
-        user = User(id_number=id_number, name=user_document['name'], phone_number=user_document['phone_number'], email=user_document['email'])
+        user = User(taz=taz, name=user_document['name'], phoneNumber=user_document['phoneNumber'], gmail=user_document['gmail'])
         login_user(user)
         return jsonify({"message": "Logged in successfully"}), 200
 
     return jsonify({"error": "Invalid ID number or password"}), 401
+
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return jsonify({"message": "Logged out successfully"}), 200
 
 
 def select_specific_fields(collection, query={}, fields=None):

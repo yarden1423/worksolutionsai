@@ -1,2 +1,5 @@
 flask
+pymongo
+werkzeug
+flask_login
 google-generativeai
