@@ -4,14 +4,16 @@ import Navbar from "./components/Navbar";
 import CVpage from "./pages/CVpage";
 import HomePage from "./pages/HomePage";
 import Suggestion from "./pages/Suggestions";
+import { Typography } from "@material-ui/core";
 
 export default function App() {
   const jobs = [
     {
       ID: 1,
-      jobTitle: "Software developer bla bla bla bla bla",
-      description: "I am looking for a software developer",
-      location: "Raanana",
+      jobTitle: "נודר נדר",
+      description:
+        "אני מחפש אנשים שרוצים לתת את כל מה שיש להם, אוהבים לעבוד ועובדים על אהבה, מחפשים את האחד ומוכנים לחכות",
+      location: "רעננה",
       companyName: "Redhat",
       skills: [
         { id: 1, name: "Java" },
@@ -23,7 +25,7 @@ export default function App() {
     },
     {
       ID: 2,
-      jobTitle: "Software developer bla bla bla bla bla",
+      jobTitle: "מקם",
       description: "I am looking for a software developer",
       location: "Raanana",
       companyName: "Redhat",
@@ -37,49 +39,7 @@ export default function App() {
     },
     {
       ID: 3,
-      jobTitle: "Software developer bla bla bla bla bla",
-      description: "I am looking for a software developer",
-      location: "Raanana",
-      companyName: "Redhat",
-      skills: [
-        { id: 1, name: "Java" },
-        { id: 2, name: "Python" },
-        { id: 3, name: "C++" },
-      ],
-      contactInfo: "0522803670",
-      link: "https://www.youtube.com/watch?v=HxD5La2BlwQ",
-    },
-    {
-      ID: 4,
-      jobTitle: "Software developer bla bla bla bla bla",
-      description: "I am looking for a software developer",
-      location: "Raanana",
-      companyName: "Redhat",
-      skills: [
-        { id: 1, name: "Java" },
-        { id: 2, name: "Python" },
-        { id: 3, name: "C++" },
-      ],
-      contactInfo: "0522803670",
-      link: "https://www.youtube.com/watch?v=HxD5La2BlwQ",
-    },
-    {
-      ID: 5,
-      jobTitle: "Software developer bla bla bla bla bla",
-      description: "I am looking for a software developer",
-      location: "Raanana",
-      companyName: "Redhat",
-      skills: [
-        { id: 1, name: "Java" },
-        { id: 2, name: "Python" },
-        { id: 3, name: "C++" },
-      ],
-      contactInfo: "0522803670",
-      link: "https://www.youtube.com/watch?v=HxD5La2BlwQ",
-    },
-    {
-      ID: 6,
-      jobTitle: "Software developer bla bla bla bla bla",
+      jobTitle: "מפתח חקלאי",
       description: "I am looking for a software developer",
       location: "Raanana",
       companyName: "Redhat",
@@ -95,6 +55,19 @@ export default function App() {
 
   return (
     <BrowserRouter>
+      <Typography
+        style={{
+          position: "absolute",
+          bottom: "10px",
+          left: "10px",
+          background: "lightblue",
+          padding: "7px",
+          borderRadius: "10px",
+          fontFamily: "cursive",
+        }}
+      >
+        powered by gemini
+      </Typography>
       <Navbar />
       <Routes>
         <Route path="/" element={<HomePage />} />
