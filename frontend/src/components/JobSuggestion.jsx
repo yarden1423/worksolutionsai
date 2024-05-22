@@ -1,11 +1,12 @@
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import { Chip, Typography } from "@mui/material";
+import { Chip, Typography, Grid } from "@mui/material";
 import CardActions from "@mui/material/CardActions";
 import Button from "@mui/material/Button";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import ApartmentIcon from "@mui/icons-material/Apartment";
 import CallIcon from "@mui/icons-material/Call";
+import JobDialog from "../components/JobDescriptionDialog";
 
 export default function JobSuggestion(props) {
   const job = props.job;
@@ -23,55 +24,61 @@ export default function JobSuggestion(props) {
               alignItems: "center",
             }}
           >
-            <ApartmentIcon />
-            {job.companyName}
+            <Grid container justifyContent={"space-between"}>
+              <Grid item>{job.companyName}</Grid>
+              <Grid item>
+                <ApartmentIcon />
+              </Grid>
+            </Grid>
           </Typography>
-          <Typography variant="h5" component="div" color="blue">
-            {job.jobTitle}
-          </Typography>
-          <Typography
-            sx={{ mb: 1.5, marginBlock: 1 }}
-            color="text.secondary"
-            style={{ display: "flex", alignItems: "center" }}
-          >
-            <LocationOnIcon /> {job.location}
-          </Typography>
+          <Grid container justifyContent={"center"}>
+            <Grid xs={7} item>
+              <Typography variant="h6" color="primary" textAlign={"center"}>
+                {job.jobTitle}
+              </Typography>
+            </Grid>
+          </Grid>
+
           <Typography
             variant="body2"
-            sx={{ marginBlock: 1, fontSize: 17 }}
+            sx={{ fontSize: 12 }}
+            marginTop={"20px"}
             style={{ fontWeight: "bold" }}
           >
-            כישורים נדרשים
+            כישורים נדרשים:
           </Typography>
-          <Typography variant="body2">
+          <Grid container justifyContent={"end"}>
             {job.skills.map((skill) => {
-              return <Chip label={skill.name} sx={{ marginRight: 1 }} />;
+              return (
+                <Grid item sx={3}>
+                  <Chip
+                    label={skill.name}
+                    key={skill.name}
+                    sx={{ marginRight: 1 }}
+                  />
+                </Grid>
+              );
             })}
-          </Typography>
-          <Typography variant="body2" sx={{ marginBlock: 2 }}>
-            {job.description}
-          </Typography>
+          </Grid>
         </CardContent>
         <CardActions
           sx={{ alignItems: "center", justifyContent: "space-between" }}
         >
-          <Typography
-            sx={{ fontSize: 14 }}
-            color="text.secondary"
-            style={{ display: "flex", alignItems: "center" }}
-          >
-            <CallIcon sx={{ margin: 1 }} />
-            {job.contactInfo}
-          </Typography>
-          <Button
-            sx={{ fontsize: 14 }}
-            style={{ display: "flex", alignItems: "right" }}
-            href={job.link}
-            target="_blank"
-          >
-            {" "}
-            קרא עוד
-          </Button>
+          <Grid container justifyContent={"space-around"}>
+            <Grid item>
+              <JobDialog job={job}></JobDialog>
+            </Grid>
+            <Grid item>
+              <Button
+                sx={{ fontsize: 14 }}
+                style={{ display: "flex", alignItems: "right" }}
+                href={job.link}
+                target="_blank"
+              >
+                גישה לאתר
+              </Button>
+            </Grid>
+          </Grid>
         </CardActions>
       </Card>
     </div>

@@ -63,7 +63,7 @@ const CVpage = () => {
         </Grid>
       </Grid>
 
-      <Grid item xs={6} sx={{ paddingX: "10px" }}>
+      <Grid item xs={6} sx={{ paddingX: "10px", paddingTop: "30px" }}>
         <Dropzone
           actionButtons={{
             position: "after",

@@ -9,7 +9,7 @@ import { red } from "@mui/material/colors";
 const theme = createTheme({
   direction: 'rtl', // Set the direction to RTL
   typography: {
-   fontFamily: 'system-ui'
+   fontFamily: 'heebo'
   },
   palette: {
     primary: {
