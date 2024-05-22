@@ -52,11 +52,15 @@ def process_gemini_json(gemini_str: str):
 
 
 print("processing traits from json")
-with open("../data/skills/skills_he.json", "r", encoding='utf-8') as f:
+with open("../data/skills/fields_he.json", "r", encoding='utf-8') as f:
     traits_json = f.read()
     traits_db = process_traits(traits_json)
 
-with open("../data/cv_examples/embedded_he.txt", "r", encoding='utf-8') as f:
+with open("../data/skills/fields_he.json", "r", encoding='utf-8') as f:
+    fields_json = f.read()
+    existing_fields = json.loads(fields_json)
+
+with open("../data/cv_examples/manufacturing_he.txt", "r", encoding='utf-8') as f:
     user_cv = f.read()
     traits_response = get_user_traits_from_gemini(user_cv)
     traits = process_gemini_json(traits_response.text)
