@@ -1,10 +1,10 @@
-import * as React from "react";
-import ReactDOM from "react-dom";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
+import * as React from "react";
+import ReactDOM from "react-dom";
 import App from "./App";
-import theme, { jss, StylesProvider } from "./theme";
 import "./index.css";
+import theme, { jss, StylesProvider } from "./theme";
 
 document.body.setAttribute("dir", "rtl");
 

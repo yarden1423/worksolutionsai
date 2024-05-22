@@ -1,10 +1,9 @@
 import * as React from "react";
-import Container from "@mui/material/Container";
 import Navbar from "./components/Navbar";
 import CVpage from "./pages/CVpage";
 import HomePage from "./pages/homePage";
 
-import { Routes, Route, BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 export default function App() {
   return (
