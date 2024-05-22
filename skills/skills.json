@@ -1,0 +1,130 @@
+{
+    "soft_skills": [
+      {
+        "skill": "Communication",
+        "sub_skills": ["Verbal communication", "Written communication", "Active listening"]
+      },
+      {
+        "skill": "Teamwork",
+        "sub_skills": ["Collaboration", "Conflict resolution", "Empathy"]
+      },
+      {
+        "skill": "Problem-Solving",
+        "sub_skills": ["Critical thinking", "Creativity", "Decision making"]
+      },
+      {
+        "skill": "Time Management",
+        "sub_skills": ["Prioritization", "Delegation", "Multitasking"]
+      },
+      {
+        "skill": "Leadership",
+        "sub_skills": ["Motivating others", "Strategic planning", "Mentoring"]
+      },
+      {
+        "skill": "Adaptability",
+        "sub_skills": ["Flexibility", "Resilience", "Stress management"]
+      },
+      {
+        "skill": "Attention to Detail",
+        "sub_skills": ["Accuracy", "Thoroughness", "Observational skills"]
+      },
+      {
+        "skill": "Customer Service",
+        "sub_skills": ["Client relations", "Handling complaints", "Providing support"]
+      },
+      {
+        "skill": "Organization",
+        "sub_skills": ["Project management", "Planning", "Record keeping"]
+      },
+      {
+        "skill": "Interpersonal Skills",
+        "sub_skills": ["Networking", "Negotiation", "Persuasion"]
+      }
+    ],
+    "hard_skills": [
+      {
+        "skill": "Technical Proficiency",
+        "sub_skills": ["Software development", "Data analysis", "IT support"]
+      },
+      {
+        "skill": "Marketing",
+        "sub_skills": ["Digital marketing", "Market research", "Social media management"]
+      },
+      {
+        "skill": "Finance",
+        "sub_skills": ["Accounting", "Financial analysis", "Budgeting"]
+      },
+      {
+        "skill": "Project Management",
+        "sub_skills": ["Agile methodologies", "Risk management", "Resource allocation"]
+      },
+      {
+        "skill": "Design",
+        "sub_skills": ["Graphic design", "UX/UI design", "CAD software"]
+      },
+      {
+        "skill": "Sales",
+        "sub_skills": ["Lead generation", "Sales strategy", "CRM software"]
+      },
+      {
+        "skill": "Healthcare",
+        "sub_skills": ["Patient care", "Medical coding", "Pharmacy management"]
+      },
+      {
+        "skill": "Education",
+        "sub_skills": ["Curriculum development", "Classroom management", "E-learning platforms"]
+      },
+      {
+        "skill": "Manufacturing and Production",
+        "sub_skills": ["Quality control", "Process improvement", "Machinery operation"]
+      },
+      {
+        "skill": "Research and Development",
+        "sub_skills": ["Experimental design", "Data collection", "Technical writing"]
+      }
+    ],
+    "specialized_skills": [
+      {
+        "skill": "Languages",
+        "sub_skills": ["Proficiency in multiple languages"]
+      },
+      {
+        "skill": "Legal",
+        "sub_skills": ["Knowledge of laws and regulations", "Contract management", "Legal research"]
+      },
+      {
+        "skill": "Human Resources",
+        "sub_skills": ["Talent acquisition", "Employee relations", "HR software"]
+      },
+      {
+        "skill": "Writing and Content Creation",
+        "sub_skills": ["Copywriting", "Editing and proofreading", "Content management systems"]
+      },
+      {
+        "skill": "Engineering",
+        "sub_skills": ["CAD software", "Circuit design", "Mechanical engineering principles"]
+      }
+    ],
+    "industry_specific_skills": [
+      {
+        "skill": "Hospitality",
+        "sub_skills": ["Event planning", "Hotel management", "Culinary skills"]
+      },
+      {
+        "skill": "Construction",
+        "sub_skills": ["Blueprint reading", "Carpentry", "Site management"]
+      },
+      {
+        "skill": "Transportation",
+        "sub_skills": ["Logistics management", "Vehicle operation", "Fleet management"]
+      },
+      {
+        "skill": "Energy",
+        "sub_skills": ["Renewable energy systems", "Energy efficiency", "Power plant operation"]
+      },
+      {
+        "skill": "Retail",
+        "sub_skills": ["Inventory management", "Point of sale systems", "Visual merchandising"]
+      }
+    ]
+  }
