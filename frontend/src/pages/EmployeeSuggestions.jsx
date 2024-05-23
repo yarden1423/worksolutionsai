@@ -15,7 +15,6 @@ export default function Emp({ relevantJobs }) {
           {relevantJobs.map((job) => {
             return (
               <Grid item xs={3} key={job._id} style={{ alignItems: "center" }}>
-                <Typography>{job.match}</Typography>
                 <JobSuggestion key={job._id} job={job}></JobSuggestion>
               </Grid>
             );

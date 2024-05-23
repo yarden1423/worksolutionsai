@@ -18,6 +18,14 @@ export default function JobSuggestion({ job }) {
         className={job.isEmployed ? "tengreen-bottom" : "tenred-bottom"}
       ></div>
       <CardContent>
+        {job.match ? (
+          <Typography textAlign={"center"} mt={"15px"} fontSize={23}>
+            אחוז ההתאמה הוא: {job.match}
+          </Typography>
+        ) : (
+          ""
+        )}
+
         <Typography
           sx={{ fontSize: 20, marginBlock: 1 }}
           color="text.secondary"

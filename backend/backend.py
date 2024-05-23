@@ -153,7 +153,8 @@ def find_workplace():
             for workplace in work_places:
                 matches = sum(1 for skill in workplace['demandedSkills'] if skill['name'] in final_skills)
                 matches_percentage = (matches / len(final_skills)) * 100
-                if matches_percentage > 25:
+                print(matches_percentage)
+                if matches_percentage > 10:
                     final_work_places.append({'obj': workplace ,'match': matches_percentage })
 
         return final_work_places
