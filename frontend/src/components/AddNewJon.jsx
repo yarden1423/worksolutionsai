@@ -8,8 +8,9 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import axios from "axios"
+import { Button } from '@mui/material';
 import { useEffect } from 'react';
-
+import { useState } from 'react';
 
 export default function AddNewJob(){ 
 
@@ -28,7 +29,7 @@ export default function AddNewJob(){
         return (
           <FormGroup>
             {
-                skills.map((skill)=>{
+                state.skills.map((skill)=>{
                     return(
                         <FormControlLabel control={<Checkbox />} label={skill.name} onSelect={()=>setState({...state,chosenSkills:[stat.chosenSkills+skill.name]})}/>
                     )
@@ -45,10 +46,10 @@ export default function AddNewJob(){
                             <RadioGroup
                                 aria-labelledby="demo-radio-buttons-group-label"
                                 name="radio-buttons-group"
-                                defaultChecked={theme[0]}
+                                defaultChecked={state.theme[0]}
                             >
                             {
-                                theme.map((theme1)=>{
+                                state.theme.map((theme1)=>{
                                     return(
                                         <FormControlLabel value={theme1.name} control={<Radio />} label={theme1.name} />
                                     )
@@ -64,7 +65,7 @@ export default function AddNewJob(){
         console.log(name, address, description)
     }
 
-    useEffect(()=>{
+    useEffect(async ()=>{
         setState({...state,skills:await GetSkillFromBack()});
         setTheme({...state, theme: await GetThemeFromBack()});
     });
@@ -72,7 +73,6 @@ export default function AddNewJob(){
 
     async function GetSkillFromBack(){
         return (await axios.get("http://localhost:5000/get-all-skills")).data;
-    }
     }
 
 
@@ -99,7 +99,7 @@ export default function AddNewJob(){
                 <CheckboxLabels/>
                 <RadioTheme/>
             </Box>
-            <Button onClick={()=>{CreateNewJob}}>
+            <Button>
                 Add
             </Button>
         </div>
