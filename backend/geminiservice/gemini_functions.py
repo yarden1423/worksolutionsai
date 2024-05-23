@@ -1,4 +1,4 @@
-from gemini import get_user_fields, get_user_traits, get_cv_improvement
+import geminiservice.gemini
 import json
 
 
@@ -9,7 +9,7 @@ def get_user_fields_from_gemini(text_data, fields):
     print("sending request to gemini api [themes]")
     response = None
     try:
-        response = get_user_fields(text_data, fields)
+        response = gemini.get_user_fields(text_data, fields)
     except Exception as e:
         print(e)
     if response is None:
@@ -24,7 +24,7 @@ def get_user_traits_from_gemini(text_data, traits):
     print("sending request to gemini api [skills]")
     response = None
     try:
-        response = get_user_traits(text_data, traits=traits)
+        response = gemini.get_user_traits(text_data, traits=traits)
     except Exception as e:
         print(e)
     if response is None:
@@ -56,7 +56,7 @@ def user_skills(user_cv, skills):
     :param traits: list of strings (traits)
     :return: a list of traits that were cleaned to only include what were in the original list supplied
     """
-    traits_response = get_user_traits_from_gemini(user_cv, traits=skills)
+    traits_response = gemini.get_user_traits_from_gemini(user_cv, traits=skills)
     generated_traits = process_gemini_json(traits_response.text)['תכונות']
     traits = clean_output(generated_traits, skills)
     return traits
