@@ -1,7 +1,6 @@
 from geminiservice.fields_model import fields_model
 from geminiservice.traits_model import traits_model
 
-
 def get_user_traits(user_details: str, traits):
     m = traits_model(traits=traits)
     response = m.send_message(user_details)
