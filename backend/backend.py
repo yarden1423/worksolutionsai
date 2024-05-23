@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
 from pymongo import MongoClient
-from gemini_functions import user_skills, user_themes
+from gemini_functions import user_skills, user_themes, gemini_improve_cv
 
 app = Flask(__name__)
 
@@ -39,10 +39,12 @@ def improve_cv():
                 ["חוקר מדעי הנתונים", "2023-2024", "אחי אני יודע דאטא כמו אלוהים"]]
         quals = ["תואר ראשון מדעי המחשב", "תואר שני מדעי המחשב", "קורס דב-אופס"]
         """
-        name = cv_data[0]
-        employment = cv_data[1]
-        qualifications = cv_data[2]
-        return None
+        name = cv_data["name"]
+        employment = cv_data["employment"]
+        qualifications = cv_data["qualifications"]
+        cv_response = gemini_improve_cv(name, employment, qualifications)
+        output = cv_response.text
+        return output
 
 
 @app.route('/add_workplace', methods=['POST'])

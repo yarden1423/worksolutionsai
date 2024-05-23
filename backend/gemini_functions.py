@@ -76,7 +76,7 @@ def user_themes(user_cv, fields):
     return fields
 
 
-def improve_cv(name, employment_history, qualifications):
+def gemini_improve_cv(name, employment_history, qualifications):
     """
     aim of this function is to receive basic details about a user's employment history and qualifications and return
     a basic but quick and easy version of a cv
@@ -99,10 +99,10 @@ def improve_cv(name, employment_history, qualifications):
     return cv_response
 
 
-if __name__ == "__main__":
-    name = "נמרוד ויין"
-    empl = [["מהנדס מערכת", "2021-2022", "עבד בתור מהנדס מערכת לשעה וחתי ביום"],
-            ["מפתח פול-סטאק", "2022-2023", "עישתי עבודה אחושיללינג תאמין לי אחי"],
-            ["חוקר מדעי הנתונים", "2023-2024", "אחי אני יודע דאטא כמו אלוהים"]]
-    quals = ["תואר ראשון מדעי המחשב", "תואר שני מדעי המחשב", "קורס דב-אופס"]
-    print(improve_cv(name, empl, quals))
+# if __name__ == "__main__":
+#     name = "נמרוד ויין"
+#     empl = [["מהנדס מערכת", "2021-2022", "עבד בתור מהנדס מערכת לשעה וחתי ביום"],
+#             ["מפתח פול-סטאק", "2022-2023", "עישתי עבודה אחושיללינג תאמין לי אחי"],
+#             ["חוקר מדעי הנתונים", "2023-2024", "אחי אני יודע דאטא כמו אלוהים"]]
+#     quals = ["תואר ראשון מדעי המחשב", "תואר שני מדעי המחשב", "קורס דב-אופס"]
+#     print(gemini_improve_cv(name, empl, quals))
