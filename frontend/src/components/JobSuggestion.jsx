@@ -77,6 +77,14 @@ export default function JobSuggestion({ job }) {
             );
           })}
         </Grid>
+        <Typography
+          variant="body2"
+          sx={{ fontSize: 12 }}
+          marginTop={"20px"}
+          style={{ fontWeight: "bold" }}
+        >
+         יצירת קשר: {job.phoneNumber}
+        </Typography>
       </CardContent>
       <CardActions
         sx={{ alignItems: "center", justifyContent: "space-between" }}
