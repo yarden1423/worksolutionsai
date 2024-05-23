@@ -2,6 +2,7 @@ import { Grid, Typography } from "@mui/material";
 import { useState } from "react";
 import { Dropzone, FileMosaic } from "@files-ui/react";
 import mammoth from "mammoth";
+import api from "../api/api";
 
 const CVpage = () => {
   const [files, setFiles] = useState([]);
@@ -20,13 +21,15 @@ const CVpage = () => {
 
   const useMammoth = async (file) => {
     try {
-      const extracteData = await mammoth.extractRawText({
+      const extractedData = await mammoth.extractRawText({
         arrayBuffer: file[0].file,
       });
 
-      console.log(extracteData);
+      const found = await api().workplaces.findWorkplace(extractedData.value);
+
+      console.log(found);
     } catch (error) {
-      console.log(error);
+      console.log("error");
     }
   };
 

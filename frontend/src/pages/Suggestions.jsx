@@ -14,7 +14,7 @@ export default function Suggestion() {
       description:
         "אני מחפש אנשים שרוצים לתת את כל מה שיש להם, אוהבים לעבוד ועובדים על אהבה, מחפשים את האחד ומוכנים לחכות",
       location: [51.505, -0.09],
-      skills: [
+      demandedSkills: [
         { _id: 1, name: "Java" },
         { _id: 2, name: "Python" },
         { _id: 12, name: "C++" },
@@ -25,42 +25,6 @@ export default function Suggestion() {
       },
       url: "https://www.youtube.com/watch?v=HxD5La2BlwQ",
       isEmployed: true,
-    },
-    {
-      _id: 2,
-      name: "Redhat",
-      description:
-        "אני מחפש אנשים שרוצים לתת את כל מה שיש להם, אוהבים לעבוד ועובדים על אהבה, מחפשים את האחד ומוכנים לחכות",
-      location: [51.505, -0.09],
-      skills: [
-        { _id: 3, name: "Java" },
-        { _id: 4, name: "Python" },
-        { _id: 5, name: "C++" },
-      ],
-      theme: {
-        _id: 5,
-        name: "תכנות",
-      },
-      url: "https://www.youtube.com/watch?v=HxD5La2BlwQ",
-      isEmployed: true,
-    },
-    {
-      _id: 3,
-      name: "Redhat",
-      description:
-        "אני מחפש אנשים שרוצים לתת את כל מה שיש להם, אוהבים לעבוד ועובדים על אהבה, מחפשים את האחד ומוכנים לחכות",
-      location: [51.505, -0.09],
-      skills: [
-        { _id: 6, name: "Java" },
-        { _id: 7, name: "Python" },
-        { _id: 8, name: "C++" },
-      ],
-      theme: {
-        _id: 5,
-        name: "תכנות",
-      },
-      url: "https://www.youtube.com/watch?v=HxD5La2BlwQ",
-      isEmployed: false,
     },
   ]);
 
@@ -125,7 +89,7 @@ export default function Suggestion() {
                         _id: "",
                         jobTitle: "",
                         description: "",
-                        skills: [],
+                        demandedSkills: [],
                         theme: { _id: "", name: "" },
                         companyName: "",
                         location: "",

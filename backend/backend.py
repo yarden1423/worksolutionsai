@@ -5,6 +5,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin, LoginManager, login_user, logout_user, login_required, current_user
 import re
 from flask_cors import CORS, cross_origin
+from bson import json_util, ObjectId
+import json
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -120,13 +122,6 @@ def select_specific_fields(collection, query={}, fields=None):
     document_list = list(value for d in documents for value in d.values())
     return document_list
 
-
-@app.route('/')
-@cross_origin()
-def hello_world():
-    return 'Hello, World!'
-
-
 @app.route('/add_workplace', methods=['POST'])
 @cross_origin()
 @login_required
@@ -136,14 +131,15 @@ def add_workplace():
         result = work_collection.insert_one(workplace_data)
         return jsonify({"message": "Workplace added successfully", "id": str(result.inserted_id)}), 201
 
-@app.route('/find_workplace', methods=['GET'])
+@app.route('/find_workplace', methods=['POST'])
 @cross_origin()
 def find_workplace():
-    if request.method == 'GET':
+    if request.method == 'POST':
         max_matches = 0
         selected_name = None
         final_work_places = []
-        find_workplace_str = request.get_data(as_text=True)
+        find_workplace_str = request.json['cv']
+        print(find_workplace_str, 'asdlsmdfkamsdkfmasd')
         # function calls gemini api to get all themes based on given cv
         final_themes = user_themes(find_workplace_str, "\n".join(get_all_themes()))
 
@@ -159,21 +155,24 @@ def find_workplace():
             if matches_percentage > 25:
                 final_work_places.append({workplace['name']: matches_percentage})
 
-        return final_work_places
+        return json.loads(json_util.dumps(final_work_places))
 
 
 @app.route('/get_all_workplace', methods=['GET'])
+@cross_origin()
 def get_all_workflows():
     return get_all_workflows_from_db()
 
 
 @app.route('/getWorkplaceByTaz', methods=['GET'])
+@cross_origin()
 def get_workplace_by_taz():
     data = request.json
     return get_workplace_by_taz_from_db(data["taz"])
 
 
 @app.route('/editWorkplace',  methods=['GET'])
+@cross_origin()
 def edit_workplace():
     name = request.json['name']
     new_data = request.json['new_data']
@@ -194,14 +193,9 @@ def get_workplace_by_taz_from_db(taz):
 
     return [a['name'] for a in results if len(a['joined_data']) == 1 and a['joined_data'][0]['taz'] == str(taz)]
 
-
-@app.route('/get_all_workplace', methods=['GET'])
-def login():
-    return get_all_workflows_from_db()
-
 def get_all_workflows_from_db():
     current_work_collection = db['workplaces']
-    return list(current_work_collection.find())
+    return list(json.loads(json_util.dumps(current_work_collection.find({}))))
 
 
 def get_work_places_from_themes(themes_list):

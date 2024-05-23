@@ -50,8 +50,8 @@ export default function JobSuggestion({ job }) {
           style={{ marginRight: "25px", marginTop: "5px" }}
         >
           <Chip
-            label={job.theme.name}
-            key={job.theme.id}
+            label={job.theme ? job.theme.name : "אין נושא"}
+            key={job.theme ? job.theme.name : "אין נושא"}
             sx={{ marginRight: 1 }}
           />
         </Grid>
@@ -69,10 +69,10 @@ export default function JobSuggestion({ job }) {
           justifyContent={"start"}
           style={{ marginRight: "25px" }}
         >
-          {job.skills.map((skill) => {
+          {job.demandedSkills.map((skill) => {
             return (
               <Grid item style={{ marginTop: "5px", marginRight: "10px" }}>
-                <Chip label={skill.name} key={skill._id} />
+                <Chip label={skill.name} key={skill.name} />
               </Grid>
             );
           })}
