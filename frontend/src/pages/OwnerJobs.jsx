@@ -5,8 +5,9 @@ import Grid from "@mui/material/Grid";
 import AddIcon from "@mui/icons-material/Add";
 import { useState } from "react";
 import JobSuggestionEdit from "../components/JonSuggestionEditMode";
+import { Link } from "react-router-dom";
 
-export default function Ownerjobs() {
+export default function OwnerJobs() {
   const [jobs, setJobs] = useState([
     {
       _id: 1,
@@ -100,25 +101,27 @@ export default function Ownerjobs() {
             >
               <Button
                 style={{ position: "absolute", top: "110px", right: "120px" }}
-                onClick={() => {
-                  setJobs((oldJobs) => {
-                    return [
-                      ...oldJobs,
-                      {
-                        _id: "",
-                        jobTitle: "",
-                        description: "",
-                        skills: [],
-                        companyName: "",
-                        location: "",
-                        contactInfo: "",
-                        link: "",
-                      },
-                    ];
-                  });
-                }}
+                //onClick={() => {
+                  //setJobs((oldJobs) => {
+                    //return [
+                      //...oldJobs,
+                      //{
+                        //_id: "",
+                        //jobTitle: "",
+                        //description: "",
+                        //skills: [],
+                        //</Grid>companyName: "",
+                        //location: "",
+                        //contactInfo: "",
+                        //link: "",
+                      //</Grid>},
+                    //];
+                  //});
+                //}}
               >
-                <AddIcon fontSize="large" />
+                <Link to="/addjob">
+                  <AddIcon fontSize="large" />
+                </Link>
               </Button>
             </Grid>
           </Grid>

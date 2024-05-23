@@ -7,7 +7,8 @@ import Suggestion from "./pages/Suggestions";
 import SignUp from "./pages/SignUp";
 import { Typography } from "@mui/material";
 import Login from "./pages/Login";
-import Ownerjobs from "./pages/Ownerjobs";
+import OwnerJobs from "./pages/OwnerJobs";
+import AddNewJob from "./components/AddNewJon";
 
 export default function App() {
   return (
@@ -29,7 +30,8 @@ export default function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/cvpage" element={<CVpage />} />
-        <Route path="/workplaces" element={<Ownerjobs />} />
+        <Route path="/workplaces" element={<OwnerJobs />} />
+        <Route path="/addjob" element={<AddNewJob />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
       </Routes>

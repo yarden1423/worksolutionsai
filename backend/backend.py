@@ -67,7 +67,7 @@ def get_work_places_from_themes(themes_list):
     work_places = list(documents)
     return work_places
 
-
+@app.route('/get-all-themes', methods=['GET'])
 def get_all_themes():
     # query[] = request.args.to_dict()
     query = {}  # Replace with your query criteria if needed
@@ -78,7 +78,7 @@ def get_all_themes():
     # Call the function to select and print specific fields
     return select_specific_fields(theme_collection, query, fields)
 
-
+@app.route('/get-all-skills', methods=['GET'])
 def get_all_skills():
     # query[] = request.args.to_dict()
     query = {}  # Replace with your query criteria if needed
