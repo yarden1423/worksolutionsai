@@ -1,13 +1,15 @@
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import { Chip, Typography, Grid } from "@mui/material";
+import { Chip, Typography, Grid, TextField } from "@mui/material";
 import CardActions from "@mui/material/CardActions";
 import Button from "@mui/material/Button";
 import ApartmentIcon from "@mui/icons-material/Apartment";
-import JobDialog from "../components/JobDescriptionDialog";
 import { useState } from "react";
+import JobDialogEdit from "./JobDescriptionDialogEditMode";
+import ModeEditIcon from '@mui/icons-material/ModeEdit';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 
-export default function JobSuggestionEdit() {
+export default function JobSuggestionEdit({job}) {
   const [skills, setSkills] = useState();
   const [theme, setTheme] = useState();
   const [description, setDescription] = useState();
@@ -15,8 +17,20 @@ export default function JobSuggestionEdit() {
   const [url, setUrl] = useState();
   const [name, setName] = useState();
 
+  const [isInEdit, setIsInEdit] = useState(false);
+
+  function changeEditState(){
+    //Change at DB
+    setIsInEdit(!isInEdit);
+  }
+
   return (
     <Card style={{ borderRadius: "10px", margin: "20px" }}>
+        <Button onClick={()=>changeEditState()}>
+          {
+          isInEdit ? <CheckCircleOutlineIcon/> : <ModeEditIcon/>
+          }
+        </Button>
       <CardContent>
         <Typography
           sx={{ fontSize: 20, marginBlock: 1 }}
@@ -29,7 +43,23 @@ export default function JobSuggestionEdit() {
           }}
         >
           <Grid container justifyContent={"space-between"}>
-            <Grid item>{job.companyName}</Grid>
+            <Grid item>
+              <TextField
+              style={{
+                fontWeight: "bold",
+                display: "flex",
+                alignItems: "center",
+                fontSize: 20,
+                marginBlock: 1,
+                gutterBottom: 1,
+                color:"GrayText",
+              }}
+              defaultValue = {job.name}
+              placeholder={job.name}
+              disabled = {!isInEdit}
+              >
+              </TextField>
+              </Grid>
             <Grid item>
               <ApartmentIcon />
             </Grid>
@@ -38,7 +68,22 @@ export default function JobSuggestionEdit() {
         <Grid container justifyContent={"center"}>
           <Grid xs={7} item>
             <Typography variant="h6" color="primary" textAlign={"center"}>
-              {job.jobTitle}
+            <TextField
+              style={{
+                variant:"h6",
+                textAlign:"center",
+                color:"primary",
+                fontWeight: "bold",
+                display: "flex",
+                alignItems: "center",
+                fontSize: 20,
+                alignContent:"center"
+              }}
+              defaultValue = {job.theme.name}
+              placeholder={job.theme.name}
+              disabled = {!isInEdit}
+              >
+              </TextField>
             </Typography>
           </Grid>
         </Grid>
@@ -57,7 +102,7 @@ export default function JobSuggestionEdit() {
               <Grid item sx={3}>
                 <Chip
                   label={skill.name}
-                  key={skill.name}
+                  key={skill._id}
                   sx={{ marginRight: 1 }}
                 />
               </Grid>
@@ -70,13 +115,13 @@ export default function JobSuggestionEdit() {
       >
         <Grid container justifyContent={"space-around"}>
           <Grid item>
-            <JobDialog job={job}></JobDialog>
+            <JobDialogEdit job={job} isInEdit={isInEdit}></JobDialogEdit>
           </Grid>
           <Grid item>
             <Button
               sx={{ fontsize: 14 }}
               style={{ display: "flex", alignItems: "right" }}
-              href={job.link}
+              href={job.url}
               target="_blank"
             >
               גישה לאתר
