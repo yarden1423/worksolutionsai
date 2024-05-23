@@ -26,6 +26,25 @@ def hello_world():
     return 'Hello, World!'
 
 
+@app.route('/improve_cv', methods=['POST'])
+def improve_cv():
+    if request.method == 'POST':
+        cv_data = request.json
+        # expecting three main items:
+        # name, list of past workplaces and education
+        """
+        name = "נמרוד ויין"
+        empl = [["מהנדס מערכת", "2021-2022", "עבד בתור מהנדס מערכת לשעה וחתי ביום"],
+                ["מפתח פול-סטאק", "2022-2023", "עישתי עבודה אחושיללינג תאמין לי אחי"],
+                ["חוקר מדעי הנתונים", "2023-2024", "אחי אני יודע דאטא כמו אלוהים"]]
+        quals = ["תואר ראשון מדעי המחשב", "תואר שני מדעי המחשב", "קורס דב-אופס"]
+        """
+        name = cv_data[0]
+        employment = cv_data[1]
+        qualifications = cv_data[2]
+        return None
+
+
 @app.route('/add_workplace', methods=['POST'])
 def add_workplace():
     if request.method == 'POST':
@@ -92,4 +111,4 @@ def get_all_skills():
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', debug=True)
