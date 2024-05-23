@@ -59,6 +59,48 @@ def find_workplace():
         return final_work_places
 
 
+@app.route('/get_all_workplace', methods=['GET'])
+def get_all_workflows():
+    return get_all_workflows_from_db()
+
+
+@app.route('/getWorkplaceByTaz', methods=['GET'])
+def get_workplace_by_taz():
+    data = request.json
+    return get_workplace_by_taz_from_db(data["taz"])
+
+
+@app.route('/editWorkplace',  methods=['GET'])
+def edit_workplace():
+    name = request.json['name']
+    new_data = request.json['new_data']
+    if edit_workplace_db(name, new_data):
+        return 'sucess'
+
+
+def edit_workplace_db(name, new_data):
+    work_collection1 = db['workplaces']
+    result = work_collection1.update_many({'name': name},{'$set': new_data})
+    return result.modified_count > 0
+
+def get_workplace_by_taz_from_db(taz):
+    current_work_collection = db['workplaces']
+    pipeline =  [{'$lookup': {'from': 'users', 'localField': 'owners', 'foreignField': '_id', 'as': 'joined_data'}}]
+
+    results = list(current_work_collection.aggregate(pipeline))
+
+    return [a['name'] for a in results if len(a['joined_data']) == 1 and a['joined_data'][0]['taz'] == str(taz)]
+
+
+@app.route('/get_all_workplace', methods=['GET'])
+def login():
+    return get_all_workflows_from_db()
+
+def get_all_workflows_from_db():
+    current_work_collection = db['workplaces']
+    return list(current_work_collection.find())
+
+
 def get_work_places_from_themes(themes_list):
     query = {"theme.name": {"$in": themes_list}}
     fields = {"_id": 0, "demandedSkills.name": 1, "name": 1}
