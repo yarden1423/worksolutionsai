@@ -20,7 +20,7 @@ export default function JobSuggestion({ job }) {
       <CardContent>
         {job.match ? (
           <Typography textAlign={"center"} mt={"15px"} fontSize={23}>
-            אחוז ההתאמה הוא: {Math.round(job.match) / 100}
+            אחוז ההתאמה הוא: {Math.round(job.match * 100) / 100}
           </Typography>
         ) : (
           ""
