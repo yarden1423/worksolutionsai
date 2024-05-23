@@ -3,27 +3,30 @@
         "_id": {
             "$oid": "6641124cbb44e2c248032e13"
         },
+        "taz": "324943620",
         "name": "irmi tal",
-        "userName": "irmiHumra",
         "password": "amiAniHai",
-        "phoneNumber": "0525155410"
+        "phoneNumber": "0525155410",
+        "gmail": "yardennaz@gmail.com"
     },
     {
         "_id": {
             "$oid": "6641124cbb44e2c248032e14"
         },
+        "taz": "324943620",
         "name": "guy ginat",
-        "userName": "oneDay",
         "password": "oneDay",
-        "phoneNumber": "0525155414"
+        "phoneNumber": "0525155414",
+        "gmail": "yardennaz@gmail.com"
     },
     {
         "_id": {
             "$oid": "6641124cbb44e2c248032e15"
         },
+        "taz": "324943620",
         "name": "asaf sikler",
-        "userName": "damag",
         "password": "tnaiKium",
-        "phoneNumber": "0525155412"
+        "phoneNumber": "0525155412",
+        "gmail": "yardennaz@gmail.com"
     }
 ]

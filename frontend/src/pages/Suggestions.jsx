@@ -3,7 +3,8 @@ import JobSuggestion from "../components/JobSuggestion";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import AddIcon from "@mui/icons-material/Add";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import api from "../api/api";
 
 export default function Suggestion() {
   const [jobs, setJobs] = useState([
@@ -62,6 +63,20 @@ export default function Suggestion() {
       isEmployed: false,
     },
   ]);
+
+  useEffect(() => {
+    const getAllWorkplaces = async () => {
+      try {
+        const { data } = await api().workplaces.getAll();
+        setJobs(() => data);
+      } catch {
+        console.log("error");
+      }
+    };
+
+    getAllWorkplaces();
+  }, []);
+
   return (
     <Grid>
       <Typography color="primary" align="center" fontSize={70}>

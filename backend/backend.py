@@ -1,11 +1,20 @@
 from flask import Flask, request, jsonify
 from pymongo import MongoClient
 from geminiservice.gemini_functions import user_skills, user_themes
+from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import UserMixin, LoginManager, login_user, logout_user, login_required, current_user
+import re
 from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
+
+app = Flask(__name__)
+app.config['SECRET_KEY'] = 'TodaBoreOlamAlHanitzachon14573@!$!@'  # You should use a secure, unique secret key!
+
+login_manager = LoginManager()
+login_manager.init_app(app)
 
 # Environment variables for security
 MONGO_URI = "mongodb+srv://owner:hirmi1423@cluster0.ubhawwh.mongodb.net/"
@@ -16,6 +25,94 @@ db = client['worksolutions']  # Database name
 work_collection = db['workplaces']  # Collection name
 theme_collection = db['themes']  # Collection theme
 skills_collection = db['skills']  # Collection theme
+users_collection = db['users']
+
+class User(UserMixin):
+    def __init__(self, taz, name, phoneNumber, gmail):
+        self.taz = taz
+        self.name = name
+        self.phoneNumber = phoneNumber
+        self.gmail = gmail
+
+    @staticmethod
+    def get_by_taz(taz):
+        user_data = users_collection.find_one({"taz": taz})
+        if user_data:
+            return User(taz=user_data['taz'], name=user_data['name'], phoneNumber=user_data['phoneNumber'], gmail=user_data['gmail'])
+        return None
+
+    def get_id(self):
+        return self.taz
+
+@login_manager.user_loader
+def load_user(username):
+    return User.get_by_taz(username)
+
+def validate_password(password):
+    if len(password) < 8:
+        return "Password must be at least 8 characters long."
+    if not re.search("[a-z]", password):
+        return "Password must contain at least one lowercase letter."
+    if not re.search("[A-Z]", password):
+        return "Password must contain at least one uppercase letter."
+    if not re.search("[0-9]", password):
+        return "Password must contain at least one digit."
+    if not re.search("[!@#$%^&*(),.?\":{}|<>]", password):
+        return "Password must contain at least one special character."
+
+    return "Password is strong."
+@app.route('/register', methods=['POST'])
+def register():
+    taz = request.json.get('taz')
+    name = request.json.get('name')
+    password = request.json.get('password')
+    phoneNumber = request.json.get('phoneNumber')
+    gmail = request.json.get('gmail')
+
+    # Validate required fields
+    if not all([taz, name, password, phoneNumber, gmail]):
+        return jsonify({"error": "All fields are required"}), 400
+
+    # Check if user already exists
+    if users_collection.find_one({"taz": taz}):
+        return jsonify({"error": "User with this ID number already exists"}), 409
+
+    password_validation = validate_password(password)
+    if password_validation != "Password is strong.":
+        return jsonify({"error": password_validation}), 400
+
+    # Hash the password
+    hashed_password = generate_password_hash(password)
+
+    # Insert new user
+    users_collection.insert_one({
+        "taz": taz,
+        "name": name,
+        "password": hashed_password,
+        "phoneNumber": phoneNumber,
+        "gmail": gmail
+    })
+    return jsonify({"message": "User registered successfully"}), 201
+
+
+@app.route('/login', methods=['POST'])
+def login():
+    taz = request.json.get('taz')
+    password = request.json.get('password')
+    user_document = users_collection.find_one({"taz": taz})
+
+    if user_document and check_password_hash(user_document['password'], password):
+        user = User(taz=taz, name=user_document['name'], phoneNumber=user_document['phoneNumber'], gmail=user_document['gmail'])
+        login_user(user)
+        return jsonify({"message": "Logged in successfully"}), 200
+
+    return jsonify({"error": "Invalid ID number or password"}), 401
+
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return jsonify({"message": "Logged out successfully"}), 200
 
 
 def select_specific_fields(collection, query={}, fields=None):
@@ -32,6 +129,7 @@ def hello_world():
 
 @app.route('/add_workplace', methods=['POST'])
 @cross_origin()
+@login_required
 def add_workplace():
     if request.method == 'POST':
         workplace_data = request.json

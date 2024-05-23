@@ -2,3 +2,5 @@ flask
 pymongo
 google-generativeai
 flask-cors
+werkzeug
+flask_login
