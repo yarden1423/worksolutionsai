@@ -6,6 +6,8 @@ COPY requirements.txt .
 COPY geminiservice/ ./geminiservice/
 RUN pip install -r requirements.txt
 
+EXPOSE 5000
+
 CMD ["python", "./backend.py"]
 
 
