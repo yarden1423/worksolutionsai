@@ -1,9 +1,9 @@
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import { Chip, Typography, Grid } from "@mui/material";
-import CardActions from "@mui/material/CardActions";
-import Button from "@mui/material/Button";
 import ApartmentIcon from "@mui/icons-material/Apartment";
+import { Chip, Grid, Typography } from "@mui/material";
+import Button from "@mui/material/Button";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
 import JobDialog from "../components/JobDescriptionDialog";
 import "./styles.css";
 

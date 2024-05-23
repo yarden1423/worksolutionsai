@@ -16,7 +16,7 @@ const Navbar = () => {
         >
           <Link to="/" color="white" style={{ textDecoration: "none" }}>
             <Typography variant="h5" color="white">
-              ממפונים לכוכבים
+              חיפוש יעיל, התאמה מדוייקתֲ!
             </Typography>
           </Link>
         </Grid>

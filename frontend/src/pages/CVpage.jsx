@@ -1,6 +1,6 @@
+import { Dropzone, FileMosaic } from "@files-ui/react";
 import { CircularProgress, Grid, Typography } from "@mui/material";
 import { useState } from "react";
-import { Dropzone, FileMosaic } from "@files-ui/react";
 import { useNavigate } from "react-router-dom";
 import Emp from "./EmployeeSuggestions";
 
@@ -62,7 +62,7 @@ const CVpage = () => {
           <Grid item sx={{ my: 4 }} xs={12} container justifyContent={"center"}>
             <Grid item xs={6}>
               <Typography variant="h4" textAlign={"center"}>
-                ברוכים הבאים ממפונים לכוכבים
+                חיפוש יעיל, התאמה מדוייקתֲ!
               </Typography>
               <Typography variant="h7" textAlign={"start"}>
                 <br></br>
@@ -80,7 +80,7 @@ const CVpage = () => {
                 <br></br>
               </Typography>
               <Typography variant="h10" color={"red"}>
-                *הקורות חיים <strong> לא נשמרות </strong> אלא עוברות איבוד על
+                *הקורות חיים <strong> לא נשמרים </strong> אלא עוברים עיבוד על
                 ידי בינה מלאכותית
               </Typography>
             </Grid>
