@@ -44,11 +44,7 @@ export default function JobSuggestion({ job }) {
         >
           נושא:
         </Typography>
-        <Grid
-          container
-          justifyContent={"start"}
-          style={{ marginRight: "25px", marginTop: "5px" }}
-        >
+        <Grid container justifyContent={"start"} style={{ marginTop: "5px" }}>
           <Chip
             label={job.theme ? job.theme.name : "אין נושא"}
             key={job.theme ? job.theme.name : "אין נושא"}
@@ -64,11 +60,7 @@ export default function JobSuggestion({ job }) {
         >
           כישורים נדרשים:
         </Typography>
-        <Grid
-          container
-          justifyContent={"start"}
-          style={{ marginRight: "25px" }}
-        >
+        <Grid container justifyContent={"start"}>
           {job.demandedSkills.map((skill) => {
             return (
               <Grid item style={{ marginTop: "5px", marginRight: "10px" }}>

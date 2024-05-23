@@ -6,7 +6,7 @@ import AddIcon from "@mui/icons-material/Add";
 import { useState, useEffect } from "react";
 import api from "../api/api";
 
-export default function Suggestion() {
+export default function Suggestion({ isAdmin }) {
   const [jobs, setJobs] = useState([
     {
       _id: 1,

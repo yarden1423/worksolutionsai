@@ -13,7 +13,7 @@ export default function App() {
     <BrowserRouter>
       <Typography
         style={{
-          position: "absolute",
+          position: "fixed",
           bottom: "10px",
           left: "10px",
           background: "lightblue",
@@ -31,6 +31,7 @@ export default function App() {
         <Route path="/workplaces" element={<Suggestion />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/employeeworkplace" element={<Login />} />
       </Routes>
     </BrowserRouter>
   );

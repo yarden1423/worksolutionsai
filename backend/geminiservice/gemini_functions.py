@@ -57,7 +57,6 @@ def user_skills(user_cv, skills):
     :return: a list of traits that were cleaned to only include what were in the original list supplied
     """
     traits_response = get_user_traits_from_gemini(user_cv, traits=skills)
-    print(process_gemini_json(traits_response.text))
     generated_traits = process_gemini_json(traits_response.text)['תכונות']
     traits = clean_output(generated_traits, skills)
     return traits

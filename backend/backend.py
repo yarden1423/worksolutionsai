@@ -138,8 +138,9 @@ def find_workplace():
         max_matches = 0
         selected_name = None
         final_work_places = []
+        print(request.json['cv'])
+
         find_workplace_str = request.json['cv']
-        print(find_workplace_str, 'asdlsmdfkamsdkfmasd')
         # function calls gemini api to get all themes based on given cv
         final_themes = user_themes(find_workplace_str, "\n".join(get_all_themes()))
 
@@ -148,14 +149,14 @@ def find_workplace():
 
         # call to gemini api to get cv skills
         final_skills = user_skills(find_workplace_str, "\n".join(skills_list))
+        if len(final_skills) != 0:
+            for workplace in work_places:
+                matches = sum(1 for skill in workplace['demandedSkills'] if skill['name'] in final_skills)
+                matches_percentage = (matches / len(final_skills)) * 100
+                if matches_percentage > 25:
+                    final_work_places.append({'obj': workplace ,'match': matches_percentage })
 
-        for workplace in work_places:
-            matches = sum(1 for skill in workplace['demandedSkills'] if skill['name'] in final_skills)
-            matches_percentage = (matches / len(final_skills)) * 100
-            if matches_percentage > 25:
-                final_work_places.append({workplace['name']: matches_percentage})
-
-        return json.loads(json_util.dumps(final_work_places))
+        return final_work_places
 
 
 @app.route('/get_all_workplace', methods=['GET'])
@@ -200,10 +201,9 @@ def get_all_workflows_from_db():
 
 def get_work_places_from_themes(themes_list):
     query = {"theme.name": {"$in": themes_list}}
-    fields = {"_id": 0, "demandedSkills.name": 1, "name": 1}
     # Find documents in MongoDB based on the query
-    documents = work_collection.find(query, fields)
-    work_places = list(documents)
+    documents = work_collection.find(query)
+    work_places = list(json.loads(json_util.dumps(documents)))
     return work_places
 
 
