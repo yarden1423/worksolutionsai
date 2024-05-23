@@ -1,8 +1,11 @@
 from flask import Flask, request, jsonify
 from pymongo import MongoClient
 from geminiservice.gemini_functions import user_skills, user_themes
+from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 # Environment variables for security
 MONGO_URI = "mongodb+srv://owner:hirmi1423@cluster0.ubhawwh.mongodb.net/"
@@ -22,19 +25,21 @@ def select_specific_fields(collection, query={}, fields=None):
 
 
 @app.route('/')
+@cross_origin()
 def hello_world():
     return 'Hello, World!'
 
 
 @app.route('/add_workplace', methods=['POST'])
+@cross_origin()
 def add_workplace():
     if request.method == 'POST':
         workplace_data = request.json
         result = work_collection.insert_one(workplace_data)
         return jsonify({"message": "Workplace added successfully", "id": str(result.inserted_id)}), 201
 
-
 @app.route('/find_workplace', methods=['GET'])
+@cross_origin()
 def find_workplace():
     if request.method == 'GET':
         max_matches = 0
